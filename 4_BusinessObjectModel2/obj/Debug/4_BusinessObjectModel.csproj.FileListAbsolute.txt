@@ -1,0 +1,11 @@
+C:\Users\sigal\source\repos\LayeredSolution\4_BusinessObjectModel2\bin\Debug\4_BusinessObjectModel2.dll
+C:\Users\sigal\source\repos\LayeredSolution\4_BusinessObjectModel2\bin\Debug\4_BusinessObjectModel2.pdb
+C:\Users\sigal\source\repos\LayeredSolution\4_BusinessObjectModel2\obj\Debug\4_BusinessObjectModel.csproj.CoreCompileInputs.cache
+C:\Users\sigal\source\repos\LayeredSolution\4_BusinessObjectModel2\obj\Debug\4_BusinessObjectModel2.dll
+C:\Users\sigal\source\repos\LayeredSolution\4_BusinessObjectModel2\obj\Debug\4_BusinessObjectModel2.pdb
+D:\Obuka\6.SchoolApplication\SchoolAPplication\LayeredSolution\4_BusinessObjectModel2\bin\Debug\4_BusinessObjectModel2.dll
+D:\Obuka\6.SchoolApplication\SchoolAPplication\LayeredSolution\4_BusinessObjectModel2\bin\Debug\4_BusinessObjectModel2.pdb
+D:\Obuka\6.SchoolApplication\SchoolAPplication\LayeredSolution\4_BusinessObjectModel2\obj\Debug\4_BusinessObjectModel.csproj.AssemblyReference.cache
+D:\Obuka\6.SchoolApplication\SchoolAPplication\LayeredSolution\4_BusinessObjectModel2\obj\Debug\4_BusinessObjectModel.csproj.CoreCompileInputs.cache
+D:\Obuka\6.SchoolApplication\SchoolAPplication\LayeredSolution\4_BusinessObjectModel2\obj\Debug\4_BusinessObjectModel2.dll
+D:\Obuka\6.SchoolApplication\SchoolAPplication\LayeredSolution\4_BusinessObjectModel2\obj\Debug\4_BusinessObjectModel2.pdb
