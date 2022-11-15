@@ -24,10 +24,7 @@ namespace LayeredSolution.Controllers
             return View(model);
         }
      
-       
-       
         
-
          public ActionResult Export(int id)
         {
             var model = IFacultyStudentService.findStudent(id);
@@ -38,5 +35,26 @@ namespace LayeredSolution.Controllers
             }
             return RedirectToAction("NotFound");
         }
+        
+        public override ActionResult  Edit(int id)
+        {
+
+            ViewBag.isReadOnly = false;
+            ViewBag.ShowButton = null;
+            var model = IFacultyStudentService.findStudent(id);
+            if (model != null)
+            {
+                return View("Edit", model);
+            }
+            return RedirectToAction("Index");
+        }
+        public override ActionResult Details(int id)
+        {
+            ViewBag.isReadOnly = true;
+            ViewBag.ShowButton = "disabled";
+            var model = IFacultyStudentService.findStudent(id);
+            return View("Edit", model);
+        }
+
     }
 }

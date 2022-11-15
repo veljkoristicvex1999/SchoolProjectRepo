@@ -199,6 +199,7 @@
     <Content Include="Views\HighSchoolStudents\Index.cshtml" />
     <Content Include="Views\HighSchoolStudents\Search.cshtml" />
     <Content Include="Views\HighSchoolStudents\NotFound.cshtml" />
+    <Content Include="Views\Shared\_EditHelper.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

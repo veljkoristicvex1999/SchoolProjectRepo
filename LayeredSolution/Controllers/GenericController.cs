@@ -18,6 +18,7 @@ namespace LayeredSolution.Controllers
 
         public ActionResult Index()
         {
+          
             var model = IGenericService.GetAllStudents();
             return View(model);
         }
@@ -36,13 +37,17 @@ namespace LayeredSolution.Controllers
             }
             return View();
         }
-
-        [HttpGet]
-        public ActionResult Details(int id)
+        [HttpPost]
+        public ActionResult Edit(T student)
         {
-            var model = IGenericService.findStudent(id);
-            return View(model);
+            if (ModelState.IsValid)
+            {
+                IGenericService.Update(student);
+                return RedirectToAction("index");
+            }
+            return View();
         }
+
 
         [HttpGet]
         public ActionResult Delete(int id)
@@ -59,24 +64,24 @@ namespace LayeredSolution.Controllers
         }
 
         [HttpGet]
-        public ActionResult Edit(int id)
+        public virtual ActionResult Details(int id)
         {
             var model = IGenericService.findStudent(id);
+            return View("Edit", model);
+        }
+
+      
+        [HttpGet]
+        public virtual ActionResult Edit(int id)     
+        {   
+            var  model = IGenericService.findStudent(id);
+            
             if (model != null)
             {
-                return View(model);
+                return View("Edit", model);
             }
             return RedirectToAction("Index");
         }
-        [HttpPost]
-        public ActionResult Edit(T student)
-        {
-            if (ModelState.IsValid)
-            {
-                IGenericService.Update(student);
-                return RedirectToAction("index");
-            }
-            return View();
-        }
+        
     }
 }
