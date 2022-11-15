@@ -35,5 +35,22 @@ namespace LayeredSolution.Controllers
             var model = IHighSchoolService.Search(Search.Trim());
             return View(model);
         }
+        public override ActionResult Edit(int id)
+        {
+
+            ViewBag.isReadOnly = false;
+            var model = IHighSchoolService.findStudent(id);
+            if (model != null)
+            {
+                return View("Edit", model);
+            }
+            return RedirectToAction("Index");
+        }
+        public override ActionResult Details(int id)
+        {
+            ViewBag.isReadOnly = true;
+            var model = IHighSchoolService.findStudent(id);
+            return View("Edit", model);
+        }
     }
 }

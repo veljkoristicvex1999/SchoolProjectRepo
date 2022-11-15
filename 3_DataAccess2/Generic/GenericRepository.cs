@@ -33,6 +33,7 @@ namespace DataAccess
         public void Delete(object id)
         {      
             var model = findStudent(id);
+            db.Set<T>().Remove(model);
             if (model != null)
             {
                 table.Attach(model);
