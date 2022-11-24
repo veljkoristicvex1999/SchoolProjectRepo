@@ -16,7 +16,7 @@ namespace DataAccess
         public FacultyStudentRepository(TuxContext db) : base(db)
         {
            
-        }    
+        }
         public List<FaculltyStudents> search(string search)
         {
             search = search.ToUpper();
@@ -44,6 +44,34 @@ namespace DataAccess
                 outputFile.WriteLine(BordnDate);
                 outputFile.WriteLine(Address);
                 br++;
+            }
+
+        }
+        public override IEnumerable<FaculltyStudents> GetAllStudents()
+        {
+            return table.SqlQuery("select * from ((t_users INNER JOIN t_user_roles ON t_users.Id = t_user_roles.Id) INNER JOIN t_roles ON t_roles.RoleId = t_user_roles.RoleId) where BillingDetailType = 'Facullty'");
+
+        }
+        public override void Create(FaculltyStudents Student)
+        {
+            var isEmailAlreadyExists = table.Any(x => x.Email == Student.Email);
+            if (!isEmailAlreadyExists) { 
+                table.Add(Student);
+                db.UserRoles.AddRange(Student.Roles);
+                db.SaveChanges();
+            }
+           
+        }
+
+        public override void Delete(object id)
+        {
+            var model = table.Include("Roles").Where(a=>a.Id ==(int)id).First();
+            if(model != null)
+            {
+                table.Attach(model);
+                db.UserRoles.RemoveRange(model.Roles);
+                table.Remove(model);
+                db.SaveChanges();
             }
         }
     }

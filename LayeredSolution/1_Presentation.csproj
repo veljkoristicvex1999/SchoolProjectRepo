@@ -139,10 +139,13 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\GenericController.cs" />
     <Compile Include="Controllers\HighSchoolStudentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\FacultyStudentController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\ProfessorController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -200,10 +203,19 @@
     <Content Include="Views\HighSchoolStudents\Search.cshtml" />
     <Content Include="Views\HighSchoolStudents\NotFound.cshtml" />
     <Content Include="Views\Shared\_EditHelper.cshtml" />
+    <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\Create.cshtml" />
+    <Content Include="Views\Professor\Index.cshtml" />
+    <Content Include="Views\Professor\Create.cshtml" />
+    <Content Include="Views\Professor\Delete.cshtml" />
+    <Content Include="Views\Professor\Search.cshtml" />
+    <Content Include="Views\Professor\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="ViewModels\" />
     <Folder Include="Views\Generic\" />
   </ItemGroup>
   <ItemGroup>
@@ -231,6 +243,10 @@
     <ProjectReference Include="..\4_BusinessObjectModel2\4_BusinessObjectModel.csproj">
       <Project>{3D90909F-0B1C-4695-B224-0EC416EC6451}</Project>
       <Name>4_BusinessObjectModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\InfrastructureLayer\InfrastructureLayer.csproj">
+      <Project>{f2712ed7-cbcd-4770-aa22-12fa64914589}</Project>
+      <Name>InfrastructureLayer</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

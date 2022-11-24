@@ -1,4 +1,5 @@
 ﻿using BusinessLayer;
+using BusinessObjectModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,8 +16,8 @@ namespace LayeredSolution.Controllers
         {
             this.IGenericService = IGenericService;
         }
-
-        public ActionResult Index()
+       
+        public virtual ActionResult Index()
         {
           
             var model = IGenericService.GetAllStudents();
@@ -27,11 +28,13 @@ namespace LayeredSolution.Controllers
         {
             return View();
         }
+
         [HttpPost]
-        public  ActionResult Create(T student)
+        public virtual ActionResult Create(T student)
         {
             if (ModelState.IsValid)
             {
+               
                 IGenericService.Create(student);
                 return RedirectToAction("Index");
             }
@@ -57,7 +60,7 @@ namespace LayeredSolution.Controllers
         }
 
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection formCollection)
+        public virtual ActionResult Delete(int id, FormCollection formCollection)
         {
             IGenericService.Remove(id);
             return RedirectToAction("Index");

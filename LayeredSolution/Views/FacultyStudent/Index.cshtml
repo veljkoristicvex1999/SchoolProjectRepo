@@ -1,12 +1,19 @@
 ﻿@model IEnumerable<BusinessObjectModel.FaculltyStudents>
 
-
-@{
-}
-
+<p>
+    @User.Identity.Name
+</p>
 <h2>Index</h2>
 
-    @Html.ActionLink("Create new", "Create")
+
+<p>
+    @if ((User.IsInRole("Admin")) || (User.IsInRole("Professor")))
+    {
+
+        @Html.ActionLink("Create New", "Create")
+    }
+
+</p>
 
 <table class="table">
     <tr>
@@ -28,7 +35,8 @@
         <th>
             @Html.DisplayNameFor(model => model.Address)
         </th>
-      
+
+
         <th></th>
     </tr>
 
@@ -53,19 +61,28 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Address)
             </td>
-           
+
+
             <td>
-                @Html.ActionLink("Details", "Details", new { id = item.Id })          
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                @if ((User.IsInRole("Admin")) || (User.IsInRole("Professor")))
+                {
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    @Html.ActionLink("Details", "Details", new { id = item.Id })
+
+
+                }
+
             </td>
         </tr>
     }
 
 </table>
 
-  
-<form method="get" action="@Url.Action("Search", "FacultyStudent")">
-    <label for="search">Search for student at the university:</label>
-    <input type="text" name="search" id="search" />
-    <button type="submit">Search</button>
-</form>
+@if ((User.IsInRole("Admin")) || (User.IsInRole("Professor")))
+{
+    <form method="get" action="@Url.Action("Search", "FacultyStudent")">
+        <label for="search">Search for student at the university:</label>
+        <input type="text" name="search" id="search" />
+        <button type="submit">Search</button>
+    </form>
+}

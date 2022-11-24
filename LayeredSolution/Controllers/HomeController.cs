@@ -2,6 +2,7 @@
 
 namespace LayeredSolution.Controllers
 {
+	[Authorize]
 	public class HomeController : Controller
 	{
 		
@@ -23,5 +24,14 @@ namespace LayeredSolution.Controllers
 
 			return View();
 		}
+		// only registered user will access this method
+		//public ActionResult UserArea()
+  //      {
+		//	return View();
+  //      }
+		//public ActionResult AdminArea()
+  //      {
+		//	return View();
+  //      }
 	}
 }
