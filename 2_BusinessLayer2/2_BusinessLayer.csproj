@@ -53,13 +53,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\AdminService.cs" />
+    <Compile Include="Admin\IAdminService.cs" />
     <Compile Include="GenericService\GenericService.cs" />
     <Compile Include="GenericService\IGenericService.cs" />
     <Compile Include="HighSchoolStudent\HighSchoolService.cs" />
     <Compile Include="HighSchoolStudent\IHighSchoolService.cs" />
+    <Compile Include="Professor\IProfessorService.cs" />
+    <Compile Include="Professor\ProfessorService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="FacultyStudent\IFacultyStudentService.cs" />
     <Compile Include="FacultyStudent\FacultyStudentService.cs" />
+    <Compile Include="Roles\IRolesService.cs" />
+    <Compile Include="Roles\RolesService.cs" />
+    <Compile Include="User\IUserService.cs" />
+    <Compile Include="User\UserService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\3_DataAccess2\3_DataAccess.csproj">

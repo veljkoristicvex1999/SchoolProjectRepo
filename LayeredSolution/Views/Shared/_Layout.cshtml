@@ -7,7 +7,7 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
-<body backgound-color =" blue">
+<body backgound-color=" blue">
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -21,11 +21,50 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("FacultyStudent", "Index", "FacultyStudent")</li>
-                    <li>@Html.ActionLink("HighSchoolStudents", "Index", "HighSchoolStudents")</li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+
+                        <li>@Html.ActionLink("Logout", "Logout", "Login")</li>
+                        if (User.IsInRole("Admin"))
+                        {
+                            ViewBag.Name = User.Identity.Name;
+
+                            <li>@Html.ActionLink("Admin", "Index", "Admin")</li>
+                            <li>@Html.ActionLink("FacultyStudent", "Index", "FacultyStudent")</li>
+                            <li>@Html.ActionLink("HighSchoolStudents", "Index", "HighSchoolStudents")</li>
+                            <li>@Html.ActionLink("Professor", "Index", "Professor")</li>
+                        }
+                        if (User.IsInRole("Professor"))
+                        {
+                            <li>@Html.ActionLink("Professor", "Index", "Professor")</li>
+                            <li>@Html.ActionLink("FacultyStudent", "Index", "FacultyStudent")</li>
+                            <li>@Html.ActionLink("HighSchoolStudents", "Index", "HighSchoolStudents")</li>
+                        }
+                        if (User.IsInRole("Facullty"))
+                        {
+                            <li>@Html.ActionLink("FacultyStudent", "Index", "FacultyStudent")</li>
+                        }
+                        if (User.IsInRole("HighSchool"))
+                        {
+                            <li>@Html.ActionLink("HighSchoolStudents", "Index", "HighSchoolStudents")</li>
+                        }
+
+
+                    }
+                    else
+
+                    {
+
+                        <li>@Html.ActionLink("Login", "Login", "Login")</li>
+                    }
+
+
+
+
+
+
+
+
                 </ul>
             </div>
         </div>
@@ -40,6 +79,9 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

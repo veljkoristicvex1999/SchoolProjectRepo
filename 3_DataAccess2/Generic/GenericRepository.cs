@@ -18,21 +18,15 @@ namespace DataAccess
         protected DbSet<T> table;
         protected readonly TuxContext db;
 
-        public GenericRepository(TuxContext db)
+        public GenericRepository(TuxContext db) 
         {
             this.db = db;
             table = db.Set<T>();
         }
 
-        public void Create(T student)
-        {
-            table.Add(student);
-            db.SaveChanges();
-        }
-
-        public void Delete(object id)
+        public virtual void Delete(object id)
         {      
-            var model = findStudent(id);
+            var model = FindStudent(id);
             db.Set<T>().Remove(model);
             if (model != null)
             {
@@ -42,24 +36,32 @@ namespace DataAccess
             }
         }
 
-        public T findStudent(object id)
+        public T FindStudent(object id)
         {
             return table.Find(id);
         }
 
         public void Update(T student)
         {
+
             table.Attach(student);
             db.Entry(student).State = EntityState.Modified;
+            
+             db.SaveChanges();
+            // ovo ne radi lepo 
+          
+        }
+
+
+        public virtual IEnumerable<T> GetAllStudents()
+        {
+            return table.SqlQuery("select * from ((t_users INNER JOIN t_user_roles ON t_users.Id = t_user_roles.Id) INNER JOIN t_roles ON t_roles.RoleId = t_user_roles.RoleId)");
+        }
+
+        public virtual void Create(T Student)
+        {
+            table.Add(Student);
             db.SaveChanges();
         }
-
-
-        public IEnumerable<T> GetAllStudents()
-        {
-            return table.ToList();
-        }
-
-        
     }
 }

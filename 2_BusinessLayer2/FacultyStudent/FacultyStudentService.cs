@@ -25,5 +25,10 @@ namespace BusinessLayer
         {
             return IFacultyStudentRepository.search(search);
         }
+        public override void Create(FaculltyStudents student)
+        {
+             IFacultyStudentRepository.Create(student);
+        }
+       
     }
 }
