@@ -1,5 +1,7 @@
-﻿using BusinessLayer;
+﻿using AutoMapper;
+using BusinessLayer;
 using BusinessObjectModel;
+using LayeredSolution.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,15 +10,15 @@ using System.Web.Mvc;
 
 namespace LayeredSolution.Controllers
 {
-    public class GenericController<T> : Controller where T : class
+    public class GenericController<Model, ViewModel> : Controller where Model : class where ViewModel : class
     {
-        private readonly IGenericService<T> IGenericService;
+        private readonly IGenericAppService<Model, ViewModel> IGenericService;
 
-        public GenericController(IGenericService<T> IGenericService)
+        public GenericController(IGenericAppService<Model, ViewModel> IGenericService)
         {
             this.IGenericService = IGenericService;
         }
-       
+
         public virtual ActionResult Index()
         {
           
@@ -30,7 +32,7 @@ namespace LayeredSolution.Controllers
         }
 
         [HttpPost]
-        public virtual ActionResult Create(T student)
+        public virtual ActionResult Create(Model student)
         {
             if (ModelState.IsValid)
             {
@@ -41,7 +43,7 @@ namespace LayeredSolution.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Edit(T student)
+        public ActionResult Edit(Model student)
         {
             if (ModelState.IsValid)
             {
@@ -53,7 +55,7 @@ namespace LayeredSolution.Controllers
 
 
         [HttpGet]
-        public ActionResult Delete(int id)
+        public virtual ActionResult Delete(int id)
         {
             var model = IGenericService.findStudent(id);
             return View(model);

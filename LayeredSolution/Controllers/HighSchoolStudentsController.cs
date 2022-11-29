@@ -4,69 +4,74 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
+using AutoMapper;
 using BusinessLayer;
 using BusinessObjectModel;
+using LayeredSolution.ViewModels;
 
 namespace LayeredSolution.Controllers
 {
-    public class HighSchoolStudentsController : GenericController<HighSchoolStudents>
+    public class HighSchoolStudentsController : GenericController<HighSchoolStudents, HighSchoolViewModel>
     {
-        private IHighSchoolService IHighSchoolService;
+        private IHighScoolAppService _highScoolAppService;
         private IRolesService IRolesService;
-
+        private IMapper mapper;
         
-        public HighSchoolStudentsController(IHighSchoolService IHighSchoolService, IRolesService IRolesService) :base(IHighSchoolService)
+        public HighSchoolStudentsController(IHighScoolAppService _highScoolAppService, IRolesService IRolesService, IMapper mapper) :base(_highScoolAppService)
         {
-            this.IHighSchoolService = IHighSchoolService;
+            this.mapper = mapper;
+            this._highScoolAppService = _highScoolAppService;
             this.IRolesService = IRolesService;
         }
 
-        [Authorize(Roles ="Admin,Professor")]
-        public ActionResult Export(int id)
-        {
-            var model = IHighSchoolService.findStudent(id);
-            if (model != null)
-            {
-                IHighSchoolService.Export(id);
-                return RedirectToAction("Index");
-            }
-            return RedirectToAction("NotFound");
-        }
+        //[Authorize(Roles ="Admin,Professor")]
+        //public ActionResult Export(int id)
+        //{
+        //    var model = _highScoolAppService.findStudent(id);
+        //    if (model != null)
+        //    {
+        //        _highScoolAppService.Export(id);
+        //        return RedirectToAction("Index");
+        //    }
+        //    return RedirectToAction("NotFound");
+        //}
 
         [Authorize(Roles = "Admin,Professor")]
         public ActionResult Search(String Search)
         {
-            var model = IHighSchoolService.Search(Search.Trim());
+            var model = _highScoolAppService.Search(Search.Trim());
             return View(model);
         }
 
         [Authorize(Roles = "Admin,Professor")]
         public override ActionResult Edit(int id)
         {
-
-            ViewBag.isReadOnly = false;
-            var model = IHighSchoolService.findStudent(id);
-            if (model != null)
+ 
+            var data = _highScoolAppService.findStudent(id);
+            data.isReadOnly = false;
+            if (data != null)
             {
-                return View("Edit", model);
+                return View("Edit", data);
             }
             return RedirectToAction("Index");
         }
+
         [Authorize(Roles = "Admin,Professor")]
         public override ActionResult Details(int id)
-        {
-            ViewBag.isReadOnly = true;
-            var model = IHighSchoolService.findStudent(id);
-            return View("Edit", model);
+        {          
+            var data = _highScoolAppService.findStudent(id);
+            data.isReadOnly = true;
+            return View("Edit", data);
         }
     
         [Authorize(Roles = "HighSchool,Professor,Admin")]
         public override ActionResult Index()
         {
-
-            var model = IHighSchoolService.GetAllStudents();
+            var model = _highScoolAppService.GetAllStudents();          
             return View(model);
         }
+
+
         [Authorize(Roles = "Admin,Professor")]
         public override ActionResult Create(HighSchoolStudents student)
         {
@@ -80,9 +85,14 @@ namespace LayeredSolution.Controllers
 
             UserRoles.Add(userRole);
             student.Roles = UserRoles;
-            IHighSchoolService.Create(student);
+            _highScoolAppService.Create(student);
             return RedirectToAction("Index");
-            //ovde zeza
+        }
+
+        public override ActionResult Delete(int id)
+        {
+            var data = _highScoolAppService.findStudent(id);
+            return View(data);
         }
     }
 }

@@ -45,8 +45,7 @@ namespace DataAccess
         {
 
             table.Attach(student);
-            db.Entry(student).State = EntityState.Modified;
-            
+            db.Entry(student).State = EntityState.Modified;          
              db.SaveChanges();
             // ovo ne radi lepo 
           

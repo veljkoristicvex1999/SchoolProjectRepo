@@ -1,5 +1,7 @@
-﻿using BusinessLayer;
+﻿using AutoMapper;
+using BusinessLayer;
 using BusinessObjectModel;
+using LayeredSolution.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,21 +10,20 @@ using System.Web.Mvc;
 
 namespace LayeredSolution.Controllers
 {
-    public class AdminController : GenericController<Admin>
+    public class AdminController : GenericController<Admin, AdminViewModel>
     {
-        private IAdminService IAdminService;
-
-        public AdminController(IAdminService IAdminService) : base(IAdminService)
+        private IAdminAppService _adminAppService;       
+       
+        public AdminController(IAdminAppService _adminAppService, IMapper mapper) : base(_adminAppService)
         {
-            this.IAdminService = IAdminService;
+            this._adminAppService = _adminAppService;
         }
-
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "HighSchool,Professor,Admin")]
         public override ActionResult Index()
         {
-
-            var model = IAdminService.GetAllStudents();
+            var model = _adminAppService.GetAllStudents();
             return View(model);
         }
+
     }
 }

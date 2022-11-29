@@ -26,6 +26,10 @@ namespace BusinessLayer
             repository.Create(student);
         }
 
+        //public void Create(T student, List<UserRoles> list)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         public T findStudent(object id)
         {

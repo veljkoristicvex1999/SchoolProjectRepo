@@ -1,6 +1,8 @@
-﻿using BusinessLayer;
+﻿using AutoMapper;
+using BusinessLayer;
 using BusinessObjectModel;
 using DataAccess;
+using LayeredSolution.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,11 +15,10 @@ namespace LayeredSolution.Controllers
     public class LoginController : Controller
     {
         private IUserService IUserService;
-        
        
+        
         public LoginController(IUserService IUserService)
         {
-         
             this.IUserService = IUserService;
         }
         public ActionResult Index()
@@ -32,10 +33,9 @@ namespace LayeredSolution.Controllers
 
         [HttpPost]
         public ActionResult Login(Login login)
-        {
-            
+        {               
                 var user = IUserService.FindStudentByCredentials(login.Email.Trim(), login.Password);
-                if (user != null)
+            if (user != null)
                 {
                     SetCookie(login);
                     List<UserRoles> userRoles = user.Roles;

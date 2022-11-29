@@ -199,3 +199,8 @@ D:\Obuka\6.SchoolApplication\SchoolAPplication\LayeredSolution\LayeredSolution\o
 D:\Obuka\6.SchoolApplication\SchoolAPplication\LayeredSolution\LayeredSolution\bin\InfrastructureLayer.dll
 D:\Obuka\6.SchoolApplication\SchoolAPplication\LayeredSolution\LayeredSolution\bin\InfrastructureLayer.pdb
 D:\Obuka\6.SchoolApplication\SchoolAPplication\LayeredSolution\LayeredSolution\bin\InfrastructureLayer.dll.config
+D:\Obuka\6.SchoolApplication\SchoolAPplication\LayeredSolution\LayeredSolution\bin\AutoMapper.dll
+D:\Obuka\6.SchoolApplication\SchoolAPplication\LayeredSolution\LayeredSolution\bin\System.ValueTuple.dll
+D:\Obuka\6.SchoolApplication\SchoolAPplication\LayeredSolution\LayeredSolution\bin\AutoMapper.pdb
+D:\Obuka\6.SchoolApplication\SchoolAPplication\LayeredSolution\LayeredSolution\bin\AutoMapper.xml
+D:\Obuka\6.SchoolApplication\SchoolAPplication\LayeredSolution\LayeredSolution\bin\System.ValueTuple.xml
