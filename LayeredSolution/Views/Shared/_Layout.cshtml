@@ -7,7 +7,7 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
-<body backgound-color=" blue">
+<body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -29,7 +29,7 @@
                         {
                             ViewBag.Name = User.Identity.Name;
 
-                            <li>@Html.ActionLink("Admin", "Index", "Admin")</li>
+                            <li>@Html.ActionLink(User.Identity.Name, "Index", "Admin")</li>
                             <li>@Html.ActionLink("FacultyStudent", "Index", "FacultyStudent")</li>
                             <li>@Html.ActionLink("HighSchoolStudents", "Index", "HighSchoolStudents")</li>
                             <li>@Html.ActionLink("Professor", "Index", "Professor")</li>
@@ -48,8 +48,6 @@
                         {
                             <li>@Html.ActionLink("HighSchoolStudents", "Index", "HighSchoolStudents")</li>
                         }
-
-
                     }
                     else
 

@@ -1,4 +1,4 @@
-﻿@model BusinessObjectModel.HighSchoolStudents
+﻿@model LayeredSolution.ViewModels.HighSchoolViewModel
 
 
 
@@ -11,7 +11,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.SchoolName, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.SchoolName, ViewBag.isReadOnly == true ? (object)new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } } : (object)new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.SchoolName, Model.isReadOnly == true ? (object)new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } } : (object)new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.SchoolName, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -22,10 +22,21 @@
     <div class="form-group">
         @Html.LabelFor(model => model.DateOfEnrollment, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.DateOfEnrollment, ViewBag.isReadOnly == true ? (object)new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } } : (object)new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.DateOfEnrollment, Model.isReadOnly == true ? (object)new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } } : (object)new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.DateOfEnrollment, "", new { @class = "text-danger" })
         </div>
     </div>
+    <br />
+    <br />
+    <br />
+    <div class="form-group">
+        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Password, Model.isReadOnly == true ? (object)new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } } : (object)new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
     <br />
     <br />
     <br />
@@ -33,8 +44,8 @@
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             @Html.ActionLink("Edit", "Edit", new { id = Model.Id })
-            <input type="submit" name="submit" id="submit" value="Save" class="btn btn-default" readonly ="@ViewBag.ShowButton" />
-             
+            <input type="submit" name="submit" id="submit" value="Save" class="btn btn-default" readonly="@Model.ShowButton" />
+
         </div>
     </div>
 }

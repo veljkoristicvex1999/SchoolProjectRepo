@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Validation;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -56,7 +57,6 @@ namespace DataAccess
         public override IEnumerable<HighSchoolStudents> GetAllStudents()
         {
             return table.SqlQuery("select * from ((t_users INNER JOIN t_user_roles ON t_users.Id = t_user_roles.Id) INNER JOIN t_roles ON t_roles.RoleId = t_user_roles.RoleId) where BillingDetailType ='HighSchool'");
-
         }
 
         public override void Create(HighSchoolStudents Student)
@@ -64,8 +64,6 @@ namespace DataAccess
                 table.Add(Student);
                 db.UserRoles.AddRange(Student.Roles);
                 db.SaveChanges();
-            //nece dodanje hoce birsanje
-            
         }
 
         public override void Delete(object id)

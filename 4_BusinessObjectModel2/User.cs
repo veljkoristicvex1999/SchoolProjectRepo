@@ -1,4 +1,4 @@
-﻿ using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace BusinessObjectModel
 {
-       
-        public  class User 
+
+    public  class User 
     {       
         public int Id { get; set; }
         public String Name { get; set; }
@@ -20,18 +20,5 @@ namespace BusinessObjectModel
         public List<UserRoles> Roles { get; set; }
         public String Password { get; set; }
     }
-    
-    public class HighSchoolStudents :User
-    {
-         public String SchoolName { get; set; }
-         public DateTime DateOfEnrollment { get; set; }
-    }
-    public class FaculltyStudents : User
-    {
-         public String FacultyName { get; set; }
-         public int Generation { get; set; }
-    }
-    public class Professor : User { }
-    public class Admin : User { }
 }
 

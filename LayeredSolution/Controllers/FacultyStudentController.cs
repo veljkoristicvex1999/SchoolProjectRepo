@@ -4,71 +4,78 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
+using AutoMapper;
 using BusinessLayer;
 using BusinessObjectModel;
+using LayeredSolution.ViewModels;
 
 namespace LayeredSolution.Controllers
 {
-    public class FacultyStudentController : GenericController<FaculltyStudents>
+    public class FacultyStudentController : GenericController<FaculltyStudents, FaculltyViewModel>
 
     {
         private IRolesService IRolesService;
-        private IFacultyStudentService IFacultyStudentService;
-
-        public FacultyStudentController(IFacultyStudentService IFacultyStudentService, IRolesService IRolesService) : base(IFacultyStudentService)
+        private IFaculltyAppService faculltyAppService;
+        private IMapper mapper;
+        public FacultyStudentController(IFaculltyAppService faculltyAppService, IRolesService IRolesService,  IMapper mapper) : base(faculltyAppService)
         {
+            this.mapper = mapper;
             this.IRolesService = IRolesService;
-            this.IFacultyStudentService = IFacultyStudentService;
+            this.faculltyAppService = faculltyAppService;
         }
+
+
         [Authorize(Roles = "Professor,Admin")]
         public ActionResult Search(String Search)
         {
-           var model = IFacultyStudentService.Search(Search.Trim());
+           var model = faculltyAppService.Search(Search.Trim());
             return View(model);
         }
 
-        [Authorize(Roles = "Professor,Admin")]
-        public ActionResult Export(int id)
-        {
-            var model = IFacultyStudentService.findStudent(id);
-            if(model != null)
-            {
-                IFacultyStudentService.Export(id);
-                return RedirectToAction("Index");
-            }
-            return RedirectToAction("NotFound");
-        }
+        //[Authorize(Roles = "Professor,Admin")]
+        //public ActionResult Export(int id)
+        //{
+        //    var model = faculltyAppService.findStudent(id);
+        //    if (model != null)
+        //    {
+        //        faculltyAppService.Export(id);
+        //        return RedirectToAction("Index");
+        //    }
+        //    return RedirectToAction("NotFound");
+        //}
 
         [Authorize(Roles = "Professor,Admin")]
         public override ActionResult  Edit(int id)
-        {
-
-            ViewBag.isReadOnly = false;
-            ViewBag.ShowButton = null;
-            var model = IFacultyStudentService.findStudent(id);
-            if (model != null)
+        {          
+            var data = faculltyAppService.findStudent(id);
+            data.isReadOnly = false;
+            if (data != null)
             {
-                return View("Edit", model);
+                return View("Edit", data);
             }
             return RedirectToAction("Index");
         }
+
+
+
         [Authorize(Roles = "Professor,Admin")]
         public override ActionResult Details(int id)
         {
-            ViewBag.isReadOnly = true;
-            ViewBag.ShowButton = "disabled";
-            var model = IFacultyStudentService.findStudent(id);
-            return View("Edit", model);
+            var data = faculltyAppService.findStudent(id);
+            data.isReadOnly = true;
+            data.ShowButton = "disabled";
+            return View("Edit", data);
         }
 
-        [Authorize(Roles = "Facullty,Professor,Admin")]
 
+        [Authorize(Roles = "Facullty,Professor,Admin")]
         public override ActionResult Index()
         {
 
-            var model = IFacultyStudentService.GetAllStudents();
-            return View(model);
+            var data = faculltyAppService.GetAllStudents();       
+            return View(data);
         }
+
 
         [Authorize(Roles = "Professor,Admin")]
         public override ActionResult Create(FaculltyStudents student)
@@ -82,11 +89,16 @@ namespace LayeredSolution.Controllers
             };
             UserRoles.Add(userRole);
             student.Roles = UserRoles;
-            IFacultyStudentService.Create(student);
+            faculltyAppService.Create(student);
             return RedirectToAction("Index");
         }
 
-      
-
+        [HttpGet]
+        public override ActionResult Delete(int id)
+        {
+            var data = faculltyAppService.findStudent(id);          
+            return View(data);
+        }
+ 
     }
 }

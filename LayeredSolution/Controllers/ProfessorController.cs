@@ -1,5 +1,7 @@
-﻿using BusinessLayer;
+﻿using AutoMapper;
+using BusinessLayer;
 using BusinessObjectModel;
+using LayeredSolution.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,21 +10,23 @@ using System.Web.Mvc;
 
 namespace LayeredSolution.Controllers
 {
-    public class ProfessorController : GenericController<Professor>
+    public class ProfessorController : GenericController<Professor, ProfessorViewModel>
     {
         private IRolesService IRolesService;
-       private IProfessorService IProfessorService;
+       private IProfessorAppService _professorAppService;
+        private IMapper mapper;
 
-       public ProfessorController(IProfessorService IProfessorService, IRolesService IRolesService) : base(IProfessorService)
+       public ProfessorController(IProfessorAppService _professorAppService, IRolesService IRolesService, IMapper mapper) : base(_professorAppService)
         {
+            this.mapper = mapper;
             this.IRolesService = IRolesService;
-            this.IProfessorService = IProfessorService;
+            this._professorAppService = _professorAppService;
         }
         [Authorize(Roles = "Professor, Admin")]
         public override ActionResult Index()
         {
 
-            var model = IProfessorService.GetAllStudents();
+            var model = _professorAppService.GetAllStudents();
             return View(model);
         }
          [Authorize(Roles = "Admin")]
@@ -37,40 +41,44 @@ namespace LayeredSolution.Controllers
             };
             UserRoles.Add(userRole);
             student.Roles = UserRoles;
-            IProfessorService.Create(student);
+            _professorAppService.Create(student);
             return RedirectToAction("Index");
         }
 
         [Authorize(Roles = "Admin")]
         public ActionResult Search(String Search)
         {
-            var model = IProfessorService.Search(Search.Trim());
+            var model = _professorAppService.Search(Search.Trim());
             return View(model);
         }
         [Authorize(Roles = "Admin")]
         public override ActionResult Edit(int id)
         {
 
-            ViewBag.isReadOnly = false;
-            ViewBag.ShowButton = null;
-            var model = IProfessorService.findStudent(id);
-            if (model != null)
+
+            var data = _professorAppService.findStudent(id);
+            data.isReadOnly = false;
+            if (data != null)
             {
-                return View("Edit", model);
+                return View("Edit", data);
             }
             return RedirectToAction("Index");
         }
+
         [Authorize(Roles = "Admin")]
         public override ActionResult Details(int id)
         {
-            ViewBag.isReadOnly = true;
-            ViewBag.ShowButton = "disabled";
-            var model = IProfessorService.findStudent(id);
-            return View("Edit", model);
+            var data = _professorAppService.findStudent(id);
+            data.isReadOnly = true;
+            return View("Edit", data);
         }
 
 
-
+        public override ActionResult Delete(int id)
+        {
+            var model = _professorAppService.findStudent(id);
+            return View(model);
+        }
 
     }
 }
