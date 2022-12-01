@@ -9,6 +9,6 @@ namespace DataAccess
 {
     public interface IAdminRepository : IGenericRepository<Admin>
     {
-        
+        Admin findByEmail(String email);
     }
 }

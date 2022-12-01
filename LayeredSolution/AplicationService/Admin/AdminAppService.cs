@@ -19,6 +19,11 @@ namespace LayeredSolution
             this.mapper = mapper;
             this._adminService = _adminService;
         }
-       
+
+        public AdminViewModel findByEmail(string email)
+        {
+            var data = mapper.Map<Admin,AdminViewModel>(_adminService.findByEmail(email));
+            return data;
+        }
     }
 }

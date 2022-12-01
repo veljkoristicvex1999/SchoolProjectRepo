@@ -29,24 +29,25 @@
                         {
                             ViewBag.Name = User.Identity.Name;
 
-                            <li>@Html.ActionLink(User.Identity.Name, "Index", "Admin")</li>
+                            <li>@Html.ActionLink("Admin profile", "UserProfile", "Admin")</li>
                             <li>@Html.ActionLink("FacultyStudent", "Index", "FacultyStudent")</li>
                             <li>@Html.ActionLink("HighSchoolStudents", "Index", "HighSchoolStudents")</li>
                             <li>@Html.ActionLink("Professor", "Index", "Professor")</li>
                         }
                         if (User.IsInRole("Professor"))
                         {
-                            <li>@Html.ActionLink("Professor", "Index", "Professor")</li>
+                            <li>@Html.ActionLink("Professor profile", "UserProfile", "Professor")</li>
                             <li>@Html.ActionLink("FacultyStudent", "Index", "FacultyStudent")</li>
                             <li>@Html.ActionLink("HighSchoolStudents", "Index", "HighSchoolStudents")</li>
                         }
                         if (User.IsInRole("Facullty"))
                         {
-                            <li>@Html.ActionLink("FacultyStudent", "Index", "FacultyStudent")</li>
+                            <li>@Html.ActionLink("Facullty Student profile", "UserProfile", "FacultyStudent")</li>
+
                         }
                         if (User.IsInRole("HighSchool"))
                         {
-                            <li>@Html.ActionLink("HighSchoolStudents", "Index", "HighSchoolStudents")</li>
+                            <li>@Html.ActionLink("High School Student profile", "UserProfile", "HighSchoolStudents")</li>
                         }
                     }
                     else

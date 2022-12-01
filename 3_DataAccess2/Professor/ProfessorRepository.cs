@@ -44,5 +44,10 @@ namespace DataAccess
             List<Professor> students = table.Where(s => (s.Address).ToUpper().Contains(search)  || (s.BornDate).ToString().ToUpper().Contains(search) || (s.PhoneNumber).ToUpper().Contains(search) || (s.Name).ToUpper().Contains(search) || (s.Email.ToUpper().Contains(search)) || (s.LastName.ToUpper().Contains(search) || (s.Name.ToUpper().Contains(search)))).ToList();
             return students;
         }
+
+        public Professor findByEmail(string email)
+        {
+            return table.Where(a => a.Email == email).First();
+        }
     }
 }

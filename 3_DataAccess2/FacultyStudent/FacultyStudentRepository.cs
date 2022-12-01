@@ -74,5 +74,10 @@ namespace DataAccess
                 db.SaveChanges();
             }
         }
+
+        public FaculltyStudents findByEmail(string email)
+        {
+            return table.Where(a => a.Email == email).First();
+        }
     }
 }

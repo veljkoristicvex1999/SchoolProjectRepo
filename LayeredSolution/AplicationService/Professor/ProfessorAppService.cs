@@ -19,6 +19,13 @@ namespace LayeredSolution
             this.mapper = mapper;
             this._professorService = _professorService;
         }
+
+        public ProfessorViewModel findByEmail(string email)
+        {
+            var data = mapper.Map<Professor, ProfessorViewModel>(_professorService.findByEmail(email));
+            return data;
+        }
+
         public List<ProfessorViewModel> Search(string search)
         {
             var data = mapper.Map<List<Professor>, List<ProfessorViewModel>>(_professorService.Search(search));
@@ -26,3 +33,4 @@ namespace LayeredSolution
         }
     }
 }
+

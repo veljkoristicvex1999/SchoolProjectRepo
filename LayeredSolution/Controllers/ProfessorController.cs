@@ -12,14 +12,14 @@ namespace LayeredSolution.Controllers
 {
     public class ProfessorController : GenericController<Professor, ProfessorViewModel>
     {
-        private IRolesService IRolesService;
+        private IRolesService _rolesService;
        private IProfessorAppService _professorAppService;
         private IMapper mapper;
 
-       public ProfessorController(IProfessorAppService _professorAppService, IRolesService IRolesService, IMapper mapper) : base(_professorAppService)
+       public ProfessorController(IProfessorAppService _professorAppService, IRolesService rolesService, IMapper mapper) : base(_professorAppService)
         {
             this.mapper = mapper;
-            this.IRolesService = IRolesService;
+            this._rolesService = rolesService;
             this._professorAppService = _professorAppService;
         }
         [Authorize(Roles = "Professor, Admin")]
@@ -36,7 +36,7 @@ namespace LayeredSolution.Controllers
             UserRoles userRole = new UserRoles()
             {
                 Id = student.Id,
-                RoleId = IRolesService.getAllRoles().FirstOrDefault(r => r.RoleName == "Professor").RoleId
+                RoleId = _rolesService.getAllRoles().FirstOrDefault(r => r.RoleName == "Professor").RoleId
 
             };
             UserRoles.Add(userRole);
@@ -78,6 +78,11 @@ namespace LayeredSolution.Controllers
         {
             var model = _professorAppService.findStudent(id);
             return View(model);
+        }
+        public ActionResult UserProfile()
+        {
+            var data = _professorAppService.findByEmail(User.Identity.Name);
+            return View(data);
         }
 
     }

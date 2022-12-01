@@ -18,6 +18,8 @@ namespace DataAccess
         T FindStudent(object id);
         void Delete(object id);
         void Update(T student);
+        
+
        
         
     }

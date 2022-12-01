@@ -77,5 +77,10 @@ namespace DataAccess
                 db.SaveChanges();
             }
         }
+
+        public HighSchoolStudents findByEmail(string email)
+        {
+            return table.Where(a => a.Email == email).First();
+        }
     }
 }

@@ -10,19 +10,25 @@ namespace BusinessLayer
 {
     public class ProfessorService : GenericService<Professor>, IProfessorService
     {
-        private IProfessorRepository IProfessorRepository;
+        private IProfessorRepository _profesorRepository;
         
-        public ProfessorService(IProfessorRepository IProfessorRepository) : base(IProfessorRepository)
+        public ProfessorService(IProfessorRepository _profesorRepository) : base(_profesorRepository)
         {
-            this.IProfessorRepository = IProfessorRepository;
+            this._profesorRepository = _profesorRepository;
         }
         public override void Create(Professor student)
         {
-            IProfessorRepository.Create(student);
+            _profesorRepository.Create(student);
         }
+
+        public Professor findByEmail(string email)
+        {
+            return _profesorRepository.findByEmail(email);
+        }
+
         public List<Professor> Search(String search)
         {
-            return IProfessorRepository.search(search);
+            return _profesorRepository.search(search);
         }
 
        

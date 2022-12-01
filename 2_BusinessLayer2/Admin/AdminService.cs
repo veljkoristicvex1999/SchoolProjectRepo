@@ -12,11 +12,16 @@ namespace BusinessLayer
 
         
     {
-        private IAdminRepository IAdminRepository;
-        public AdminService(IAdminRepository IAdminRepository) :base(IAdminRepository) 
+        private IAdminRepository _adminRepository;
+        public AdminService(IAdminRepository adminRepository) :base(adminRepository) 
 
         {
-            this.IAdminRepository = IAdminRepository;
+            this._adminRepository = adminRepository;
+        }
+
+        public Admin findByEmail(string email)
+        {
+            return _adminRepository.findByEmail(email);
         }
     }
 }

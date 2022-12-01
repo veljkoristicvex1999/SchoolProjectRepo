@@ -10,6 +10,6 @@ namespace LayeredSolution
     public interface IProfessorAppService : IGenericAppService<Professor, ProfessorViewModel>
     {
         List<ProfessorViewModel> Search(string search);
-
+        ProfessorViewModel findByEmail(String email);
     }
 }

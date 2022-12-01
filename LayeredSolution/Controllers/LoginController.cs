@@ -14,12 +14,14 @@ namespace LayeredSolution.Controllers
 {
     public class LoginController : Controller
     {
-        private IUserService IUserService;
-       
         
-        public LoginController(IUserService IUserService)
+        private IUserService _userService;
+        private IMapper mapper;
+        
+        public LoginController(IUserService IUserService, IMapper mapper)
         {
-            this.IUserService = IUserService;
+            this.mapper = mapper;
+            this._userService = IUserService;
         }
         public ActionResult Index()
         {
@@ -34,26 +36,26 @@ namespace LayeredSolution.Controllers
         [HttpPost]
         public ActionResult Login(Login login)
         {               
-                var user = IUserService.FindStudentByCredentials(login.Email.Trim(), login.Password);
+            var user = _userService.FindStudentByCredentials(login.Email.Trim(), login.Password);
             if (user != null)
                 {
                     SetCookie(login);
                     List<UserRoles> userRoles = user.Roles;
                     if (userRoles.Where(a => a.RoleId == 8).FirstOrDefault() != null)
-                    {
-                        return RedirectToAction("Index", "Admin");
+                    {                 
+                    return RedirectToAction("UserProfile", "Admin");
                     }
                     else if (userRoles.Where(a => a.RoleId == 9).FirstOrDefault() != null)
                     {
-                        return RedirectToAction("Index", "Professor");
+                        return RedirectToAction("UserProfile", "Professor");
                     }
                     else if (userRoles.Where(a => a.RoleId == 10).FirstOrDefault() != null)
                     {
-                        return RedirectToAction("Index", "FacultyStudent");
+                        return RedirectToAction("UserProfile", "FacultyStudent");
                     }
                     else
                     {
-                        return RedirectToAction("Index", "HighSchoolStudents");
+                        return RedirectToAction("UserProfile", "HighSchoolStudents");
                     }
                 }
             

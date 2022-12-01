@@ -9,7 +9,7 @@ namespace LayeredSolution
 {
     public interface IAdminAppService : IGenericAppService<Admin, AdminViewModel>
     {
-       
+        AdminViewModel findByEmail(String email);
 
     }
 }

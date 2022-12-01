@@ -10,35 +10,38 @@ namespace BusinessLayer
 {
     public class HighSchoolService : GenericService<HighSchoolStudents>, IHighSchoolService
     {
-        private IHighSchoolRepository IHighSchoolRepository;
+        private IHighSchoolRepository _highSchoolRepository;
 
-        public HighSchoolService(IHighSchoolRepository IHighSchoolRepository) : base(IHighSchoolRepository)
+        public HighSchoolService(IHighSchoolRepository highSchoolRepository) : base(highSchoolRepository)
         {
-            this.IHighSchoolRepository = IHighSchoolRepository;
+            this._highSchoolRepository = highSchoolRepository;
         }
 
 
         public void Export(int id)
         {
-            IHighSchoolRepository.Export(id);
+            _highSchoolRepository.Export(id);
         }
 
        
         //verovatno je save changes problem jer ga nemas i ne cuva podatke ove
         public List<HighSchoolStudents> Search(string search)
         {
-            return IHighSchoolRepository.search(search);
+            return _highSchoolRepository.search(search);
         }
 
         public override void Remove(object id)
         {
-            IHighSchoolRepository.Delete(id);
+            _highSchoolRepository.Delete(id);
         }
         public override void Create(HighSchoolStudents student)
         {
-            IHighSchoolRepository.Create(student);
+            _highSchoolRepository.Create(student);
         }
 
-
+        public HighSchoolStudents findByEmail(string email)
+        {
+            return _highSchoolRepository.findByEmail(email);
+        }
     }
 }

@@ -7,5 +7,7 @@ namespace LayeredSolution.ViewModels
 {
     public class ProfessorViewModel :UserViewModel
     {
+        public  string Subject { get; set; }
+        public int HoursPerWeek { get; set; }
     }
 }

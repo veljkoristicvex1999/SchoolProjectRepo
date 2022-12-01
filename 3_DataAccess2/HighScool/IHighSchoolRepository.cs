@@ -12,5 +12,6 @@ namespace DataAccess
     {
         List<HighSchoolStudents> search(String search);
        void Export(int id);
+        HighSchoolStudents findByEmail(String email);
     }
 }

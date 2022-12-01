@@ -12,17 +12,17 @@ namespace LayeredSolution.Controllers
 {
     public class GenericController<Model, ViewModel> : Controller where Model : class where ViewModel : class
     {
-        private readonly IGenericAppService<Model, ViewModel> IGenericService;
+        private readonly IGenericAppService<Model, ViewModel> _genericAppService;
 
-        public GenericController(IGenericAppService<Model, ViewModel> IGenericService)
+        public GenericController(IGenericAppService<Model, ViewModel> genericAppService)
         {
-            this.IGenericService = IGenericService;
+            this._genericAppService = genericAppService;
         }
 
         public virtual ActionResult Index()
         {
           
-            var model = IGenericService.GetAllStudents();
+            var model = _genericAppService.GetAllStudents();
             return View(model);
         }
         [HttpGet]
@@ -37,7 +37,7 @@ namespace LayeredSolution.Controllers
             if (ModelState.IsValid)
             {
                
-                IGenericService.Create(student);
+                _genericAppService.Create(student);
                 return RedirectToAction("Index");
             }
             return View();
@@ -47,7 +47,7 @@ namespace LayeredSolution.Controllers
         {
             if (ModelState.IsValid)
             {
-                IGenericService.Update(student);
+                _genericAppService.Update(student);
                 return RedirectToAction("index");
             }
             return View();
@@ -57,21 +57,21 @@ namespace LayeredSolution.Controllers
         [HttpGet]
         public virtual ActionResult Delete(int id)
         {
-            var model = IGenericService.findStudent(id);
+            var model = _genericAppService.findStudent(id);
             return View(model);
         }
 
         [HttpPost]
         public virtual ActionResult Delete(int id, FormCollection formCollection)
         {
-            IGenericService.Remove(id);
+            _genericAppService.Remove(id);
             return RedirectToAction("Index");
         }
 
         [HttpGet]
         public virtual ActionResult Details(int id)
         {
-            var model = IGenericService.findStudent(id);
+            var model = _genericAppService.findStudent(id);
             return View("Edit", model);
         }
 
@@ -79,7 +79,7 @@ namespace LayeredSolution.Controllers
         [HttpGet]
         public virtual ActionResult Edit(int id)     
         {   
-            var  model = IGenericService.findStudent(id);
+            var  model = _genericAppService.findStudent(id);
             
             if (model != null)
             {
@@ -87,6 +87,13 @@ namespace LayeredSolution.Controllers
             }
             return RedirectToAction("Index");
         }
-        
+
+        //public ActionResult UserProfile(UserViewModel userViewModel)
+        //{
+        //    int id = userViewModel.Id;
+        //    var model = IGenericService.findStudent(id);
+        //    return View(model);
+        //}
+
     }
 }

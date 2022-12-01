@@ -13,6 +13,13 @@ namespace DataAccess
         {
              
         }
+
+        public Admin findByEmail(string email)
+        {   
+            return table.Where(a => a.Email == email).First();
+            
+        }
+
         public override IEnumerable<Admin> GetAllStudents()
         {
             return table.SqlQuery("  select * from ((t_users INNER JOIN t_user_roles ON t_users.Id = t_user_roles.Id) INNER JOIN t_roles ON t_roles.RoleId = t_user_roles.RoleId) where BillingDetailType = 'Admin'");

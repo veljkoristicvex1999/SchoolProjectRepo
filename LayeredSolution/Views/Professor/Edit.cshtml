@@ -4,6 +4,28 @@
 {
 
     @Html.Partial("_EditHelper", Model)
+    <br />
+    
+    <div class="form-group">
+        @Html.LabelFor(model => model.Subject, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Subject, Model.isReadOnly == true ? (object)new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } } : (object)new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <br />
+    <br />
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.HoursPerWeek, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.HoursPerWeek, Model.isReadOnly == true ? (object)new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } } : (object)new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.HoursPerWeek, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <br />
+
+    <br />
     <div class="form-group">
         @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
@@ -11,9 +33,6 @@
             @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
         </div>
     </div>
-    <br />
-    <br />
-    
 
     <br />
     <br />

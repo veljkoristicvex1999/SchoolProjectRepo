@@ -10,7 +10,7 @@ namespace LayeredSolution
 {
     public interface IFaculltyAppService : IGenericAppService<FaculltyStudents, FaculltyViewModel>
     {
-        List<FaculltyViewModel> Search(string search);       
-        
+        List<FaculltyViewModel> Search(string search);
+        FaculltyViewModel findByEmail(String email);
     }
 }

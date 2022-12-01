@@ -14,14 +14,14 @@ namespace LayeredSolution.Controllers
     public class HighSchoolStudentsController : GenericController<HighSchoolStudents, HighSchoolViewModel>
     {
         private IHighScoolAppService _highScoolAppService;
-        private IRolesService IRolesService;
+        private IRolesService _rolesService;
         private IMapper mapper;
         
-        public HighSchoolStudentsController(IHighScoolAppService _highScoolAppService, IRolesService IRolesService, IMapper mapper) :base(_highScoolAppService)
+        public HighSchoolStudentsController(IHighScoolAppService _highScoolAppService, IRolesService _rolesService, IMapper mapper) :base(_highScoolAppService)
         {
             this.mapper = mapper;
             this._highScoolAppService = _highScoolAppService;
-            this.IRolesService = IRolesService;
+            this._rolesService = _rolesService;
         }
 
         //[Authorize(Roles ="Admin,Professor")]
@@ -79,7 +79,7 @@ namespace LayeredSolution.Controllers
             UserRoles userRole = new UserRoles()
             {
                 Id = student.Id,
-                RoleId = IRolesService.getAllRoles().FirstOrDefault(r => r.RoleName == "HighSchool").RoleId
+                RoleId = _rolesService.getAllRoles().FirstOrDefault(r => r.RoleName == "HighSchool").RoleId
 
             };
 
@@ -92,6 +92,11 @@ namespace LayeredSolution.Controllers
         public override ActionResult Delete(int id)
         {
             var data = _highScoolAppService.findStudent(id);
+            return View(data);
+        }
+        public ActionResult UserProfile()
+        {
+            var data = _highScoolAppService.findByEmail(User.Identity.Name);
             return View(data);
         }
     }

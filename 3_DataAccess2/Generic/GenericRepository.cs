@@ -62,5 +62,7 @@ namespace DataAccess
             table.Add(Student);
             db.SaveChanges();
         }
+
+        
     }
 }

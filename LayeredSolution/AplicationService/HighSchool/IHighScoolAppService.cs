@@ -11,6 +11,7 @@ namespace LayeredSolution
     public interface IHighScoolAppService : IGenericAppService<HighSchoolStudents, HighSchoolViewModel>
     {
         List<HighSchoolViewModel> Search(string search);
+        HighSchoolViewModel findByEmail(String email);
 
     }
 }

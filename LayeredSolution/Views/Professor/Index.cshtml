@@ -1,11 +1,5 @@
 ﻿@model IEnumerable<LayeredSolution.ViewModels.ProfessorViewModel>
 
-@{
-    ViewBag.Title = "View";
-}
-
-<h2>View</h2>
-
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -58,7 +52,15 @@
 
                 @if ((User.IsInRole("Admin")))
                 {
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    <a id="btnDelete" class="btn btn-danger btn-sm" data-toggle="modal"
+                       data-target="#DeleteModal-@item.Id" style='margin-left:5px'><i class='fa fa-trash'></i> Delete</a>
+                    using (Html.BeginForm("Delete", "Professor", new { id = item.Id }, FormMethod.Post, null))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="modal" tabindex="-1" role="dialog" id="DeleteModal-@item.Id">
+                            @Html.Partial("_DeletePopUp")
+                        </div>
+                    }
                     @Html.ActionLink("Details", "Details", new { id = item.Id })
                 }
             </td>
@@ -74,3 +76,9 @@
         <button type="submit">Search</button>
     </form>
 }
+
+
+
+
+
+

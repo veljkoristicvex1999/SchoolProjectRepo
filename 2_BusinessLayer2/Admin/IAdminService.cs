@@ -9,5 +9,6 @@ namespace BusinessLayer
 {
     public interface IAdminService : IGenericService<Admin>
     {
+        Admin findByEmail(String email);
     }
 }

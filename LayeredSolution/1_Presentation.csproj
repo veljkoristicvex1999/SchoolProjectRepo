@@ -234,6 +234,11 @@
     <Content Include="Views\Professor\Delete.cshtml" />
     <Content Include="Views\Professor\Search.cshtml" />
     <Content Include="Views\Professor\Edit.cshtml" />
+    <Content Include="Views\Admin\UserProfile.cshtml" />
+    <Content Include="Views\FacultyStudent\UserProfile.cshtml" />
+    <Content Include="Views\HighSchoolStudents\UserProfile.cshtml" />
+    <Content Include="Views\Professor\UserProfile.cshtml" />
+    <Content Include="Views\Shared\_DeletePopUp.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

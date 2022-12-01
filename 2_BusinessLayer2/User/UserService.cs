@@ -10,14 +10,14 @@ namespace BusinessLayer
 {
     public class UserService : GenericService<User>, IUserService
     {
-        private IUserRepository IUserRepository;
-        public UserService(IUserRepository IUserRepository) : base(IUserRepository)
+        private IUserRepository _userRepository;
+        public UserService(IUserRepository userRepository) : base(userRepository)
         {
-            this.IUserRepository = IUserRepository;
+            this._userRepository = userRepository;
         }
         public User FindStudentByCredentials(string email, string password)
         {
-            return IUserRepository.FindStudentByCredentials(email, password);
+            return _userRepository.FindStudentByCredentials(email, password);
         }
     }
 }

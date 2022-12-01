@@ -26,17 +26,10 @@ namespace BusinessLayer
             repository.Create(student);
         }
 
-        //public void Create(T student, List<UserRoles> list)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
         public T findStudent(object id)
         {
             return repository.FindStudent(id);
         }
-
-     
 
         public IEnumerable<T> GetAllStudents()
         {
@@ -47,17 +40,6 @@ namespace BusinessLayer
         {
             repository.Delete(id);
         }
-
-
-
-
-
-        //public IEnumerable<T> Search(string search)
-        //{
-        //    return IHighSchoolRepository.search(search);
-        //}
-
-
 
         public void Update(T student)
         {

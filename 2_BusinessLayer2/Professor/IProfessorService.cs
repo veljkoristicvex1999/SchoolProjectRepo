@@ -10,6 +10,7 @@ namespace BusinessLayer
     public interface IProfessorService : IGenericService<Professor>
     {
         List<Professor> Search(string search);
+        Professor findByEmail(String email);
      
     }
 }

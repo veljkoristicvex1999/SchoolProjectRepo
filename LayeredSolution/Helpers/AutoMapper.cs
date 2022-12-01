@@ -20,6 +20,7 @@ namespace LayeredSolution
                 cfg.CreateMap<HighSchoolStudents, HighSchoolViewModel>();
                 cfg.CreateMap<Professor, ProfessorViewModel>();
                 cfg.CreateMap<Admin, AdminViewModel>();
+                cfg.ValidateInlineMaps = false;
             });
              IMapper mapper = config.CreateMapper();
             return mapper;

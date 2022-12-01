@@ -55,8 +55,9 @@ namespace DataAccess
 			modelBuilder.Entity<FaculltyStudents>().Property(p => p.Generation).HasColumnName("Generation").IsOptional();
 			modelBuilder.Entity<HighSchoolStudents>().Property(p => p.SchoolName).HasColumnName("SchoolName").IsOptional();
 			modelBuilder.Entity<HighSchoolStudents>().Property(p => p.DateOfEnrollment).HasColumnName("DateOfEnrollment").IsOptional();
-			
 
+			modelBuilder.Entity<Professor>().Property(p => p.HoursPerWeek).HasColumnName("HoursPerWeek").IsOptional();
+			modelBuilder.Entity<Professor>().Property(p => p.Subject).HasColumnName("Subject").IsOptional();
 
 			modelBuilder.Entity<UserRoles>().HasKey(ur =>new { ur.Id, ur.RoleId});
 			modelBuilder.Entity<UserRoles>().Property(p => p.RoleId).HasColumnName("RoleId").IsRequired();
@@ -65,5 +66,13 @@ namespace DataAccess
 		
 
 		}
-	}
+
+    //    public System.Data.Entity.DbSet<LayeredSolution.ViewModels.FaculltyViewModel> FaculltyViewModels { get; set; }
+
+     //   public System.Data.Entity.DbSet<LayeredSolution.ViewModels.HighSchoolViewModel> HighSchoolViewModels { get; set; }
+
+     //   public System.Data.Entity.DbSet<LayeredSolution.ViewModels.ProfessorViewModel> ProfessorViewModels { get; set; }
+
+        // public System.Data.Entity.DbSet<LayeredSolution.ViewModels.AdminViewModel> AdminViewModels { get; set; }
+    }
 }

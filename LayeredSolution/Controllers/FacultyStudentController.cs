@@ -14,21 +14,21 @@ namespace LayeredSolution.Controllers
     public class FacultyStudentController : GenericController<FaculltyStudents, FaculltyViewModel>
 
     {
-        private IRolesService IRolesService;
-        private IFaculltyAppService faculltyAppService;
+        private IRolesService _rolesService;
+        private IFaculltyAppService _faculltyAppService;
         private IMapper mapper;
-        public FacultyStudentController(IFaculltyAppService faculltyAppService, IRolesService IRolesService,  IMapper mapper) : base(faculltyAppService)
+        public FacultyStudentController(IFaculltyAppService _faculltyAppService, IRolesService _rolesService,  IMapper mapper) : base(_faculltyAppService)
         {
             this.mapper = mapper;
-            this.IRolesService = IRolesService;
-            this.faculltyAppService = faculltyAppService;
+            this._rolesService = _rolesService;
+            this._faculltyAppService = _faculltyAppService;
         }
 
 
         [Authorize(Roles = "Professor,Admin")]
         public ActionResult Search(String Search)
         {
-           var model = faculltyAppService.Search(Search.Trim());
+           var model = _faculltyAppService.Search(Search.Trim());
             return View(model);
         }
 
@@ -47,7 +47,7 @@ namespace LayeredSolution.Controllers
         [Authorize(Roles = "Professor,Admin")]
         public override ActionResult  Edit(int id)
         {          
-            var data = faculltyAppService.findStudent(id);
+            var data = _faculltyAppService.findStudent(id);
             data.isReadOnly = false;
             if (data != null)
             {
@@ -61,7 +61,7 @@ namespace LayeredSolution.Controllers
         [Authorize(Roles = "Professor,Admin")]
         public override ActionResult Details(int id)
         {
-            var data = faculltyAppService.findStudent(id);
+            var data = _faculltyAppService.findStudent(id);
             data.isReadOnly = true;
             data.ShowButton = "disabled";
             return View("Edit", data);
@@ -72,7 +72,7 @@ namespace LayeredSolution.Controllers
         public override ActionResult Index()
         {
 
-            var data = faculltyAppService.GetAllStudents();       
+            var data = _faculltyAppService.GetAllStudents();       
             return View(data);
         }
 
@@ -84,21 +84,28 @@ namespace LayeredSolution.Controllers
             UserRoles userRole = new UserRoles()
             {
                 Id = student.Id,
-                RoleId = IRolesService.getAllRoles().FirstOrDefault(r => r.RoleName == "Facullty").RoleId
+                RoleId = _rolesService.getAllRoles().FirstOrDefault(r => r.RoleName == "Facullty").RoleId
 
             };
+            
             UserRoles.Add(userRole);
             student.Roles = UserRoles;
-            faculltyAppService.Create(student);
+            _faculltyAppService.Create(student);
             return RedirectToAction("Index");
         }
 
         [HttpGet]
         public override ActionResult Delete(int id)
         {
-            var data = faculltyAppService.findStudent(id);          
+            var data = _faculltyAppService.findStudent(id);          
             return View(data);
         }
- 
+
+        public ActionResult UserProfile()
+        {
+            var data = _faculltyAppService.findByEmail(User.Identity.Name);
+            return View(data);
+        }
+
     }
 }

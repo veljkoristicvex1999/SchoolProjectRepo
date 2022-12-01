@@ -20,6 +20,13 @@ namespace LayeredSolution
             this.mapper = mapper;
             this._facultyStudentService = facultyStudentService;
         }
+
+        public FaculltyViewModel findByEmail(string email)
+        {
+            var data = mapper.Map<FaculltyStudents, FaculltyViewModel>(_facultyStudentService.findByEmail(email));
+            return data;
+        }
+
         public List<FaculltyViewModel> Search(string search)
         {
             var data = mapper.Map<List<FaculltyStudents>, List<FaculltyViewModel>>(_facultyStudentService.Search(search));

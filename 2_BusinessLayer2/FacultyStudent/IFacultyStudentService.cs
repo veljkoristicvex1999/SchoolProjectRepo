@@ -9,5 +9,6 @@ namespace BusinessLayer
        
         List<FaculltyStudents> Search (string search);
         void Export(int id);
+        FaculltyStudents findByEmail(String email);
     }
 }
