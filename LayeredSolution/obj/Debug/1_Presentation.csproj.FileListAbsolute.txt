@@ -196,3 +196,6 @@ D:\Obuka\6.SchoolApplication\SchoolAPplication\LayeredSolution\LayeredSolution\b
 D:\Obuka\6.SchoolApplication\SchoolAPplication\LayeredSolution\LayeredSolution\bin\Antlr3.Runtime.pdb
 D:\Obuka\6.SchoolApplication\SchoolAPplication\LayeredSolution\LayeredSolution\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 D:\Obuka\6.SchoolApplication\SchoolAPplication\LayeredSolution\LayeredSolution\obj\Debug\1_Presentation.csproj.CopyComplete
+D:\Obuka\6.SchoolApplication\SchoolAPplication\LayeredSolution\LayeredSolution\bin\InfrastructureLayer.dll
+D:\Obuka\6.SchoolApplication\SchoolAPplication\LayeredSolution\LayeredSolution\bin\InfrastructureLayer.pdb
+D:\Obuka\6.SchoolApplication\SchoolAPplication\LayeredSolution\LayeredSolution\bin\InfrastructureLayer.dll.config

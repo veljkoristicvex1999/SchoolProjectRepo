@@ -30,8 +30,15 @@ namespace BusinessLayer
             return IHighSchoolRepository.search(search);
         }
 
+        public override void Remove(object id)
+        {
+            IHighSchoolRepository.Delete(id);
+        }
+        public override void Create(HighSchoolStudents student)
+        {
+            IHighSchoolRepository.Create(student);
+        }
 
 
-     
     }
 }

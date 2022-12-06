@@ -4,20 +4,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 using DataAccess;
+
 namespace BusinessLayer
 {
 
 
    public  class GenericService<T> : IGenericService<T> where T : class
     {
-        IGenericRepository<T> repository;
+        private IGenericRepository<T> repository;
+        
+
         public GenericService(IGenericRepository<T> repository)
         {
             this.repository = repository; 
         }
 
-        public void Create(T student)
+        public virtual void Create(T student)
         {
             repository.Create(student);
         }
@@ -25,15 +29,17 @@ namespace BusinessLayer
 
         public T findStudent(object id)
         {
-            return repository.findStudent(id);
+            return repository.FindStudent(id);
         }
+
+     
 
         public IEnumerable<T> GetAllStudents()
         {
             return repository.GetAllStudents();
         }
 
-        public void Remove(object id)
+        public virtual void Remove(object id)
         {
             repository.Delete(id);
         }
