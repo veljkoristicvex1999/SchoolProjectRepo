@@ -11,5 +11,6 @@ namespace BusinessLayer
 
       List<HighSchoolStudents> Search(String search);
         void Export(int id);
+        HighSchoolStudents findByEmail(String email);
     }
 }

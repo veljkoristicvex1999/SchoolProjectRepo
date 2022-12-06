@@ -9,21 +9,30 @@ namespace BusinessLayer
 {
     public class FacultyStudentService : GenericService<FaculltyStudents> , IFacultyStudentService
     {
-        private IFacultyStudentRepository IFacultyStudentRepository;
+        private IFacultyStudentRepository _facultyStudenRepository;
 
-        public FacultyStudentService(IFacultyStudentRepository IFacultyStudentRepository) : base(IFacultyStudentRepository)
+        public FacultyStudentService(IFacultyStudentRepository facultyStudentRepository) : base(facultyStudentRepository)
         {
-            this.IFacultyStudentRepository = IFacultyStudentRepository;
+            this._facultyStudenRepository = facultyStudentRepository;
         }
         public void Export(int id)
         {
-            IFacultyStudentRepository.Export(id);
+            _facultyStudenRepository.Export(id);
         }
 
 
         public List<FaculltyStudents> Search(string search)
         {
-            return IFacultyStudentRepository.search(search);
+            return _facultyStudenRepository.search(search);
+        }
+        public override void Create(FaculltyStudents student)
+        {
+             _facultyStudenRepository.Create(student);
+        }
+
+        public FaculltyStudents findByEmail(string email)
+        {
+            return _facultyStudenRepository.findByEmail(email);
         }
         public override void Create(FaculltyStudents student)
         {

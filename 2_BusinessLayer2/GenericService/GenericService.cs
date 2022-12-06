@@ -26,7 +26,6 @@ namespace BusinessLayer
             repository.Create(student);
         }
 
-
         public T findStudent(object id)
         {
             return repository.FindStudent(id);
@@ -43,17 +42,6 @@ namespace BusinessLayer
         {
             repository.Delete(id);
         }
-
-
-
-
-
-        //public IEnumerable<T> Search(string search)
-        //{
-        //    return IHighSchoolRepository.search(search);
-        //}
-
-
 
         public void Update(T student)
         {
