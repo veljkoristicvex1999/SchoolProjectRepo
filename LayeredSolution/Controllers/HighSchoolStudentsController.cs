@@ -24,18 +24,6 @@ namespace LayeredSolution.Controllers
             this._rolesService = _rolesService;
         }
 
-        //[Authorize(Roles ="Admin,Professor")]
-        //public ActionResult Export(int id)
-        //{
-        //    var model = _highScoolAppService.findStudent(id);
-        //    if (model != null)
-        //    {
-        //        _highScoolAppService.Export(id);
-        //        return RedirectToAction("Index");
-        //    }
-        //    return RedirectToAction("NotFound");
-        //}
-
         [Authorize(Roles = "Admin,Professor")]
         public ActionResult Search(String Search)
         {
@@ -65,7 +53,7 @@ namespace LayeredSolution.Controllers
         }
     
         [Authorize(Roles = "HighSchool,Professor,Admin")]
-        public override ActionResult Index()
+        public  ActionResult Index()
         {
             var model = _highScoolAppService.GetAllStudents();          
             return View(model);

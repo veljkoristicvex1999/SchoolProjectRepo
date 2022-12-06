@@ -23,7 +23,7 @@ namespace LayeredSolution.Controllers
             this._professorAppService = _professorAppService;
         }
         [Authorize(Roles = "Professor, Admin")]
-        public override ActionResult Index()
+        public  ActionResult Index()
         {
 
             var model = _professorAppService.GetAllStudents();

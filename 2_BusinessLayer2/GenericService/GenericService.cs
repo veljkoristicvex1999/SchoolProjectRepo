@@ -13,7 +13,8 @@ namespace BusinessLayer
 
    public  class GenericService<T> : IGenericService<T> where T : class
     {
-        private IGenericRepository<T> repository;
+        
+        protected IGenericRepository<T> repository;
         
 
         public GenericService(IGenericRepository<T> repository)
@@ -29,11 +30,6 @@ namespace BusinessLayer
         public T findStudent(object id)
         {
             return repository.FindStudent(id);
-        }
-
-        public IEnumerable<T> GetAllStudents()
-        {
-            return repository.GetAllStudents();
         }
 
         public virtual void Remove(object id)

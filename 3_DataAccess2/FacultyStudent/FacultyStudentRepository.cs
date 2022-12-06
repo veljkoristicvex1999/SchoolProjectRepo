@@ -17,12 +17,12 @@ namespace DataAccess
         {
            
         }
-        public List<FaculltyStudents> search(string search)
-        {
-            search = search.ToUpper();
-            List<FaculltyStudents> students = table.Where(s => (s.Address).ToUpper().Contains(search) || (s.FacultyName).ToUpper().Contains(search) || (s.BornDate).ToString().ToUpper().Contains(search) || (s.PhoneNumber).ToUpper().Contains(search) || (s.Name).ToUpper().Contains(search) || (s.Email.ToUpper().Contains(search)) || (s.LastName.ToUpper().Contains(search) || (s.Name.ToUpper().Contains(search)))).ToList();
-            return students;
-        }
+        //public List<FaculltyStudents> search(string search)
+        //{
+        //    search = search.ToUpper();
+        //    List<FaculltyStudents> students = table.Where(s => (s.Address).ToUpper().Contains(search) || (s.FacultyName).ToUpper().Contains(search) || (s.BornDate).ToString().ToUpper().Contains(search) || (s.PhoneNumber).ToUpper().Contains(search) || (s.Name).ToUpper().Contains(search) || (s.Email.ToUpper().Contains(search)) || (s.LastName.ToUpper().Contains(search) || (s.Name.ToUpper().Contains(search)))).ToList();
+        //    return students;
+        //}
       
         public void Export(int id)
         {
@@ -47,11 +47,7 @@ namespace DataAccess
             }
 
         }
-        public override IEnumerable<FaculltyStudents> GetAllStudents()
-        {
-            return table.SqlQuery("select * from ((t_users INNER JOIN t_user_roles ON t_users.Id = t_user_roles.Id) INNER JOIN t_roles ON t_roles.RoleId = t_user_roles.RoleId) where BillingDetailType = 'Facullty'");
-
-        }
+        
         public override void Create(FaculltyStudents Student)
         {
             var isEmailAlreadyExists = table.Any(x => x.Email == Student.Email);
@@ -79,5 +75,10 @@ namespace DataAccess
         {
             return table.Where(a => a.Email == email).First();
         }
+
+        //public IEnumerable<FaculltyStudents> Search(string search)
+        //{ 
+        //    return table.SqlQuery("select * from ((t_users INNER JOIN t_user_roles ON t_users.Id = t_user_roles.Id) INNER JOIN t_roles ON t_roles.RoleId = t_user_roles.RoleId) where BillingDetailType = 'Facullty'");
+        //}
     }
 }

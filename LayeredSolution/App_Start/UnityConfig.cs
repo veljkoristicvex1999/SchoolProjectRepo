@@ -9,6 +9,7 @@ using LayeredSolution;
 using AutoMapper;
 using System.ComponentModel;
 using LayeredSolution.ViewModels;
+using BusinessObjectModel.QueryModels;
 
 namespace LayeredSolution
 {
@@ -24,7 +25,9 @@ namespace LayeredSolution
 
 			container.RegisterType<IGenericRepository<HighSchoolStudents>, GenericRepository<HighSchoolStudents>>();
 			container.RegisterType<IGenericRepository<FaculltyStudents>, GenericRepository<FaculltyStudents>>();
-
+			container.RegisterType<IGenericRepository<HighSchoolQueryModel>, GenericRepository<HighSchoolQueryModel>>();
+			container.RegisterType<IGenericRepository<FacultyQueryModel>, GenericRepository<FacultyQueryModel>>();
+			container.RegisterType<IGenericRepository<ProfessorQueryModel>, GenericRepository<ProfessorQueryModel>>();
 			container.RegisterType<IFacultyStudentRepository, FacultyStudentRepository>();
 		    container.RegisterType<IGenericService<FaculltyStudents>, GenericService<FaculltyStudents>>();
 			 container.RegisterType<IGenericService<HighSchoolStudents>, GenericService<HighSchoolStudents>>();
@@ -37,18 +40,25 @@ namespace LayeredSolution
 			container.RegisterType<IHighScoolAppService, HighScoolAppService>();
 			container.RegisterType<IGenericAppService<HighSchoolStudents, HighSchoolViewModel>, GenericAppService<HighSchoolStudents, HighSchoolViewModel>>();
 			container.RegisterType<IFacultyStudentService, FacultyStudentService>();
+			// treba mozda isiti genericki da nasledi ovo 
 			container.RegisterType<IProfessorAppService, ProfessorAppService>();
 			container.RegisterType<IGenericAppService<Professor, ProfessorViewModel>, GenericAppService<Professor, ProfessorViewModel>>();
 			container.RegisterType<IAdminAppService, AdminAppService>();
 			container.RegisterType<IGenericAppService<Admin, AdminViewModel>, GenericAppService<Admin, AdminViewModel>>();
-			container.RegisterType<IHighSchoolRepository, HighSchoolRepository>();
+			container.RegisterType<IFacultyQueryModelRepository, FacultyQueryModelRepository>();
+			container.RegisterType<IHighSchoolQueryRepository, HighSchoolQueryRepository>();
+			container.RegisterType<IProfessorQueryRepository, ProfessorQueryRepository>();
 			container.RegisterType<IHighSchoolService, HighSchoolService>();
 			container.RegisterType<IAdminRepository, AdminRepository>();
             container.RegisterType<IAdminService, AdminService>();
+			container.RegisterType<IHighSchoolRepository,HighSchoolRepository>();
 			container.RegisterType<IProfessorRepository, ProfessorRepository>();
 			container.RegisterType<IProfessorService, ProfessorService>();
 			container.RegisterType<IRolesRepository, RolesRepository>();
 			container.RegisterType<IRolesService, RolesService>();
+			
+			
+			
 			container.RegisterInstance<IMapper>(AutoMapper.MapperConfig());
 			
 

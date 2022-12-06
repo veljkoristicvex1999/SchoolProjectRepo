@@ -69,7 +69,7 @@ namespace LayeredSolution.Controllers
 
 
         [Authorize(Roles = "Facullty,Professor,Admin")]
-        public override ActionResult Index()
+        public  ActionResult Index()
         {
 
             var data = _faculltyAppService.GetAllStudents();       

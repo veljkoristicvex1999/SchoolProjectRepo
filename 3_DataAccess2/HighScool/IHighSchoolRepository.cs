@@ -10,7 +10,7 @@ namespace DataAccess
 {
     public interface IHighSchoolRepository : IGenericRepository<HighSchoolStudents>
     {
-        List<HighSchoolStudents> search(String search);
+       
        void Export(int id);
         HighSchoolStudents findByEmail(String email);
     }

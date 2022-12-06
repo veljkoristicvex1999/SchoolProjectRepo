@@ -15,11 +15,6 @@ namespace DataAccess
         {
 
         }
-        public override IEnumerable<Professor> GetAllStudents()
-        {
-            return table.SqlQuery("  select * from ((t_users INNER JOIN t_user_roles ON t_users.Id = t_user_roles.Id) INNER JOIN t_roles ON t_roles.RoleId = t_user_roles.RoleId) where BillingDetailType ='Professor'");
-        }
-
         public override void Create(Professor Student)
         {
             table.Add(Student);
@@ -41,7 +36,7 @@ namespace DataAccess
         public List<Professor> search(string search)
         {
             search = search.ToUpper();
-            List<Professor> students = table.Where(s => (s.Address).ToUpper().Contains(search)  || (s.BornDate).ToString().ToUpper().Contains(search) || (s.PhoneNumber).ToUpper().Contains(search) || (s.Name).ToUpper().Contains(search) || (s.Email.ToUpper().Contains(search)) || (s.LastName.ToUpper().Contains(search) || (s.Name.ToUpper().Contains(search)))).ToList();
+            List<Professor> students = table.Where(s => (s.Address).ToUpper().Contains(search) || (s.BornDate).ToString().ToUpper().Contains(search) || (s.PhoneNumber).ToUpper().Contains(search) || (s.Name).ToUpper().Contains(search) || (s.Email.ToUpper().Contains(search)) || (s.LastName.ToUpper().Contains(search) || (s.Name.ToUpper().Contains(search)))).ToList();
             return students;
         }
 

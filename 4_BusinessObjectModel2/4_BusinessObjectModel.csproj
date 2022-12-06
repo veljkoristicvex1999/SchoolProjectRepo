@@ -48,6 +48,10 @@
     <Compile Include="FaculltyStudents.cs" />
     <Compile Include="HighSchoolStudents.cs" />
     <Compile Include="Professor.cs" />
+    <Compile Include="QueryModels\FacultyQueryModel.cs" />
+    <Compile Include="QueryModels\HighSchoolQueryModel.cs" />
+    <Compile Include="QueryModels\ProfessorQueryModel.cs" />
+    <Compile Include="QueryModels\UserQueryModel.cs" />
     <Compile Include="UserRoles.cs" />
     <Compile Include="Login.cs" />
     <Compile Include="Roles.cs" />

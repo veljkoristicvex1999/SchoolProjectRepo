@@ -19,12 +19,13 @@ namespace LayeredSolution.Controllers
             this._genericAppService = genericAppService;
         }
 
-        public virtual ActionResult Index()
-        {
+        //public virtual ActionResult Index()
+        //{
           
-            var model = _genericAppService.GetAllStudents();
-            return View(model);
-        }
+        //    var model = _genericAppService.GetAllStudents();
+        //    return View(model);
+        //}
+
         [HttpGet]
         public ActionResult Create()
         {

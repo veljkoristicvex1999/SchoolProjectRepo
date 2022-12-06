@@ -46,15 +46,7 @@ namespace DataAccess
 
             table.Attach(student);
             db.Entry(student).State = EntityState.Modified;          
-             db.SaveChanges();
-            // ovo ne radi lepo 
-          
-        }
-
-
-        public virtual IEnumerable<T> GetAllStudents()
-        {
-            return table.SqlQuery("select * from ((t_users INNER JOIN t_user_roles ON t_users.Id = t_user_roles.Id) INNER JOIN t_roles ON t_roles.RoleId = t_user_roles.RoleId)");
+             db.SaveChanges();      
         }
 
         public virtual void Create(T Student)

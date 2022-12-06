@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Collections.Generic;
 using BusinessLayer;
 using AutoMapper;
 
@@ -32,12 +31,12 @@ namespace LayeredSolution
             return data;
         }
 
-        public IEnumerable<VievModel> GetAllStudents()
-        {
-            var model = genericService.GetAllStudents();
-            var data = mapper.Map<List<Model>, List<VievModel>>(model.ToList());
-            return data;
-        }
+        //public IEnumerable<VievModel> GetAllStudents()
+        //{
+        //    var model = genericService.GetAllStudents();
+        //    var data = mapper.Map<List<Model>, List<VievModel>>(model.ToList());
+        //    return data;
+        //}
 
         public void Remove(object id)
         {

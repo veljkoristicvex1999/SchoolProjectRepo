@@ -1,4 +1,5 @@
 using BusinessObjectModel;
+using BusinessObjectModel.QueryModels;
 using System.Data.Entity;
 namespace DataAccess
 
@@ -9,6 +10,10 @@ namespace DataAccess
         {
 
         }
+		//public DbSet<ProfessorQueryModel> ProfesorQueyModels;
+		//public DbSet<HighSchoolQueryModel> HighSchoolQueryModels;
+		//public DbSet<FacultyQueryModel> FacultyQueryModels;
+
 		public DbSet<User> Users { get; set; }
 		public DbSet<UserRoles> UserRoles { get; set; }
 		public DbSet<HighSchoolStudents> HighSchoolStudents { get; set; }
@@ -28,6 +33,7 @@ namespace DataAccess
 			modelBuilder.Entity<FaculltyStudents>().Map<FaculltyStudents>(m => m.Requires("BillingDetailType").HasValue("Facullty"));
 			modelBuilder.Entity<Admin>().Map<Admin>(m => m.Requires("BillingDetailType").HasValue("Admin"));
 			modelBuilder.Entity<Professor>().Map<Professor>(m => m.Requires("BillingDetailType").HasValue("Professor"));
+		
 
 
 

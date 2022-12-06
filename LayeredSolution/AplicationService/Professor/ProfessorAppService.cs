@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using BusinessLayer;
 using BusinessObjectModel;
+using BusinessObjectModel.QueryModels;
+using LayeredSolution.QueryViewModels;
 using LayeredSolution.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -26,11 +28,18 @@ namespace LayeredSolution
             return data;
         }
 
-        public List<ProfessorViewModel> Search(string search)
+        public List<ProfessorQueryViewModels> GetAllStudents()
         {
-            var data = mapper.Map<List<Professor>, List<ProfessorViewModel>>(_professorService.Search(search));
+            var data = mapper.Map<List<ProfessorQueryModel>, List<ProfessorQueryViewModels>>(_professorService.GetAllStudents());
             return data;
         }
+
+        public List<ProfessorQueryViewModels> Search(string search)
+        {
+            var data = mapper.Map<List<ProfessorQueryModel>, List<ProfessorQueryViewModels>>(_professorService.Search(search));
+            return data;
+        }
+
     }
 }
 

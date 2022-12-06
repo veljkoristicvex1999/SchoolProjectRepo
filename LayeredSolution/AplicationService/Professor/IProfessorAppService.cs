@@ -1,4 +1,5 @@
 ﻿using BusinessObjectModel;
+using LayeredSolution.QueryViewModels;
 using LayeredSolution.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,8 @@ namespace LayeredSolution
 {
     public interface IProfessorAppService : IGenericAppService<Professor, ProfessorViewModel>
     {
-        List<ProfessorViewModel> Search(string search);
+        List<ProfessorQueryViewModels> GetAllStudents();
+        List<ProfessorQueryViewModels> Search(string search);
         ProfessorViewModel findByEmail(String email);
     }
 }

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<LayeredSolution.ViewModels.ProfessorViewModel>
+﻿@model IEnumerable<LayeredSolution.QueryViewModels.ProfessorQueryViewModels>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -14,12 +14,7 @@
         <th>
             @Html.DisplayNameFor(model => model.BornDate)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
-        </th>
+            
         <th>
             @Html.DisplayNameFor(model => model.Address)
         </th>
@@ -37,12 +32,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.BornDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PhoneNumber)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Address)

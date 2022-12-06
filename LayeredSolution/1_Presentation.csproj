@@ -168,10 +168,16 @@
     </Compile>
     <Compile Include="Helpers\AutoMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueryViewModels\FacultyQueryViewModel.cs" />
+    <Compile Include="QueryViewModels\HighSchoolQueryViewModels.cs" />
+    <Compile Include="QueryViewModels\ProfessorQueryViewModels.cs" />
+    <Compile Include="QueryViewModels\UserQueryViewModels.cs" />
     <Compile Include="ViewModels\AdminViewModel.cs" />
     <Compile Include="ViewModels\FaculltyViewModel.cs" />
     <Compile Include="ViewModels\HighSchoolViewModel.cs" />
     <Compile Include="ViewModels\ProfessorViewModel.cs" />
+    <Compile Include="ViewModels\QueryViewModels\FacultyQueryViewModel.cs" />
+    <Compile Include="ViewModels\QueryViewModels\UserQueryViewModels.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

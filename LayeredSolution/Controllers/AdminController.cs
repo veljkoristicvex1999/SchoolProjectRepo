@@ -15,10 +15,10 @@ namespace LayeredSolution.Controllers
             this._adminAppService = _adminAppService;
         }
         [Authorize(Roles = "HighSchool,Professor,Admin")]
-        public override ActionResult Index()
+        public  ActionResult Index()
         {
             
-            var model = _adminAppService.GetAllStudents();
+         //   var model = _adminAppService.GetAllStudents();
             return View();
         }
         public ActionResult UserProfile()

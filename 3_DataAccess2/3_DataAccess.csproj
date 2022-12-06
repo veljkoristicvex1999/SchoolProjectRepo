@@ -45,6 +45,8 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -63,6 +65,12 @@
     <Compile Include="FacultyStudent\FacultyStudentRepository.cs" />
     <Compile Include="Professor\IProfessorRepository.cs" />
     <Compile Include="Professor\ProfessorRepository.cs" />
+    <Compile Include="QueryModelRepository\FacultyQueryRepository\FacultyQueryModelRepository.cs" />
+    <Compile Include="QueryModelRepository\FacultyQueryRepository\IFacultyQueryModelRepository.cs" />
+    <Compile Include="QueryModelRepository\HighSchoolQueryRepository\HighSchoolQueryRepository.cs" />
+    <Compile Include="QueryModelRepository\HighSchoolQueryRepository\IHighSchoolQueryRepository.cs" />
+    <Compile Include="QueryModelRepository\ProfessorQueryRepository\IProfessorQueryRepository.cs" />
+    <Compile Include="QueryModelRepository\ProfessorQueryRepository\ProfessorQueryRepository.cs" />
     <Compile Include="Roles\IRolesRepository.cs" />
     <Compile Include="Roles\RolesRepository.cs" />
     <Compile Include="TuxContext.cs" />
@@ -80,7 +88,9 @@
       <Name>4_BusinessObjectModel</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="DynamicData\FieldTemplates\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

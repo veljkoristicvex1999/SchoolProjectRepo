@@ -6,28 +6,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataAccess;
+using BusinessObjectModel.QueryModels;
+
 namespace BusinessLayer
 {
     public class HighSchoolService : GenericService<HighSchoolStudents>, IHighSchoolService
     {
-        private IHighSchoolRepository _highSchoolRepository;
 
-        public HighSchoolService(IHighSchoolRepository highSchoolRepository) : base(highSchoolRepository)
+        IHighSchoolRepository _highSchoolRepository;
+        IHighSchoolQueryRepository _highSchoolQueryRepository;
+
+        public HighSchoolService(IHighSchoolRepository _highSchoolRepository, IHighSchoolQueryRepository _highSchoolQueryRepository) : base(_highSchoolRepository)
         {
-            this._highSchoolRepository = highSchoolRepository;
+            this._highSchoolRepository = _highSchoolRepository;
+            this._highSchoolQueryRepository = _highSchoolQueryRepository;
         }
 
 
         public void Export(int id)
         {
             _highSchoolRepository.Export(id);
-        }
-
-       
-        //verovatno je save changes problem jer ga nemas i ne cuva podatke ove
-        public List<HighSchoolStudents> Search(string search)
-        {
-            return _highSchoolRepository.search(search);
         }
 
         public override void Remove(object id)
@@ -42,6 +40,17 @@ namespace BusinessLayer
         public HighSchoolStudents findByEmail(string email)
         {
             return _highSchoolRepository.findByEmail(email);
+        }
+        
+
+        public List<HighSchoolQueryModel> GettAllStudents()
+        {
+            return _highSchoolQueryRepository.GetAllStudents();
+        }
+
+        public List<HighSchoolQueryModel> Search(string search)
+        {
+            return _highSchoolQueryRepository.Search(search.ToString());
         }
     }
 }

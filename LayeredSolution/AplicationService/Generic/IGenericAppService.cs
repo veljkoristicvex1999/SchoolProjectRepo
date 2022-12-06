@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Collections.Generic;
+
 
 namespace LayeredSolution
 {
     public interface IGenericAppService<Model,VievModel> where Model : class where VievModel : class
     {
-        IEnumerable<VievModel> GetAllStudents();
+     //   IEnumerable<VievModel> GetAllStudents();
         void Create(Model student);
         VievModel findStudent(object id);
         void Remove(object id);

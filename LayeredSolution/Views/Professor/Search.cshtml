@@ -1,4 +1,4 @@
-﻿@model IEnumerable<LayeredSolution.ViewModels.ProfessorViewModel>
+﻿@model IEnumerable<LayeredSolution.QueryViewModels.ProfessorQueryViewModels>
 
 @{
     ViewBag.Title = "Search";
@@ -21,16 +21,7 @@
             @Html.DisplayNameFor(model => model.BornDate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Address)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Password)
         </th>
         <th></th>
     </tr>
@@ -46,17 +37,9 @@
         <td>
             @Html.DisplayFor(modelItem => item.BornDate)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PhoneNumber)
-        </td>
+        <
         <td>
             @Html.DisplayFor(modelItem => item.Address)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Password)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

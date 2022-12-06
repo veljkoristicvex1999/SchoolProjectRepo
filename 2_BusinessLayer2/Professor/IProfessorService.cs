@@ -1,4 +1,5 @@
 ﻿using BusinessObjectModel;
+using BusinessObjectModel.QueryModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,8 @@ namespace BusinessLayer
 {
     public interface IProfessorService : IGenericService<Professor>
     {
-        List<Professor> Search(string search);
+        List<ProfessorQueryModel> GetAllStudents();
+        List<ProfessorQueryModel> Search(string search);
         Professor findByEmail(String email);
      
     }
