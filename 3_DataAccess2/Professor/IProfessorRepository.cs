@@ -9,8 +9,9 @@ namespace DataAccess
 {
     public interface IProfessorRepository : IGenericRepository<Professor>
     {
-        List<Professor> search(String search);
+        List<Professor> Search(String search);
         Professor findByEmail(String email);
+        List<Professor> GetAllStudents();
        
     }
 }

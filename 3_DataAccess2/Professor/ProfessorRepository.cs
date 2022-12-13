@@ -33,7 +33,7 @@ namespace DataAccess
             }
         }
 
-        public List<Professor> search(string search)
+        public List<Professor> Search(string search)
         {
             search = search.ToUpper();
             List<Professor> students = table.Where(s => (s.Address).ToUpper().Contains(search) || (s.BornDate).ToString().ToUpper().Contains(search) || (s.PhoneNumber).ToUpper().Contains(search) || (s.Name).ToUpper().Contains(search) || (s.Email.ToUpper().Contains(search)) || (s.LastName.ToUpper().Contains(search) || (s.Name.ToUpper().Contains(search)))).ToList();
@@ -44,5 +44,12 @@ namespace DataAccess
         {
             return table.Where(a => a.Email == email).First();
         }
+
+        public List<Professor> GetAllStudents()
+        {
+            return table.ToList();
+        }
+
+       
     }
 }

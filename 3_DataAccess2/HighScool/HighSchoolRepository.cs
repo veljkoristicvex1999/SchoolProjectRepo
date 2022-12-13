@@ -73,5 +73,17 @@ namespace DataAccess
         {
             return table.Where(a => a.Email == email).First();
         }
+
+        public List<HighSchoolStudents> Search(string search)
+        {
+            search = search.ToUpper();
+            List<HighSchoolStudents> students = table.Where(s => (s.Address).ToUpper().Contains(search) || (s.SchoolName).ToUpper().Contains(search) || (s.BornDate).ToString().ToUpper().Contains(search) || (s.PhoneNumber).ToUpper().Contains(search) || (s.Name).ToUpper().Contains(search) || (s.Email.ToUpper().Contains(search)) || (s.LastName.ToUpper().Contains(search) || (s.Name.ToUpper().Contains(search)))).ToList();
+            return students;
+        }
+
+        public List<HighSchoolStudents> GetAllStudents()
+        {
+            return table.ToList();
+        }
     }
 }

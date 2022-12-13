@@ -13,5 +13,7 @@ namespace DataAccess
        
        void Export(int id);
         HighSchoolStudents findByEmail(String email);
+        List<HighSchoolStudents> Search(String search);
+        List<HighSchoolStudents> GetAllStudents();
     }
 }

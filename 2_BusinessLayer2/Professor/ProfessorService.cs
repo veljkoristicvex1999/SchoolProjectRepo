@@ -35,7 +35,7 @@ namespace BusinessLayer
         }
 
 
-        List<ProfessorQueryModel> IProfessorService.Search(string search)
+        public List<ProfessorQueryModel> Search(string search)
         {
             return _professorQueryRepository.Search(search);
         }
