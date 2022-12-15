@@ -55,6 +55,9 @@ namespace DataAccess
             db.SaveChanges();
         }
 
-        
+        public IEnumerable<T> GetAll()
+        {
+            return table.ToList();
+        }
     }
 }

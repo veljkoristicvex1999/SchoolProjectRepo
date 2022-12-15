@@ -13,12 +13,14 @@ namespace LayeredSolution.Controllers
 {
     public class HighSchoolStudentsController : GenericController<HighSchoolStudents, HighSchoolViewModel>
     {
+        private IGenericService<ActionData> _actionDataService;
         private IHighScoolAppService _highScoolAppService;
         private IRolesService _rolesService;
         private IMapper mapper;
         
-        public HighSchoolStudentsController(IHighScoolAppService _highScoolAppService, IRolesService _rolesService, IMapper mapper) :base(_highScoolAppService)
+        public HighSchoolStudentsController(IHighScoolAppService _highScoolAppService, IRolesService _rolesService, IMapper mapper, IGenericService<ActionData> _actionDataService) :base(_highScoolAppService)
         {
+            this._actionDataService = _actionDataService;
             this.mapper = mapper;
             this._highScoolAppService = _highScoolAppService;
             this._rolesService = _rolesService;
@@ -74,6 +76,10 @@ namespace LayeredSolution.Controllers
             UserRoles.Add(userRole);
             student.Roles = UserRoles;
             _highScoolAppService.Create(student);
+            //add action data
+            ActionData data = SetActionData();
+            data.Id = student.Id;
+            _actionDataService.Create(data);
             return RedirectToAction("Index");
         }
 
@@ -86,6 +92,30 @@ namespace LayeredSolution.Controllers
         {
             var data = _highScoolAppService.findByEmail(User.Identity.Name);
             return View(data);
+        }
+
+        public ActionData SetActionData()
+        {
+            ActionData action = new ActionData();
+            action.Action = this.ControllerContext.RouteData.Values["action"].ToString();
+            action.Role = this.ControllerContext.RouteData.Values["controller"].ToString();
+            action.ActionTime = DateTime.Now;
+            action.CurrentUser = User.Identity.Name;
+            return action;
+        }
+        public override ActionResult Edit(HighSchoolStudents student)
+        {
+            ActionData data = SetActionData();
+            data.Id = student.Id;
+            _actionDataService.Create(data);
+            return base.Edit(student);
+        }
+        public override ActionResult Delete(int id, FormCollection formCollection)
+        {
+            ActionData data = SetActionData();
+            data.Id = id;
+              _actionDataService.Create(data);
+            return base.Delete(id, formCollection);
         }
     }
 }

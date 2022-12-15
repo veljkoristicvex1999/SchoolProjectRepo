@@ -19,6 +19,8 @@ namespace DataAccess
 		public DbSet<HighSchoolStudents> HighSchoolStudents { get; set; }
 		public DbSet<FaculltyStudents> FaculltyStudents { get; set; }
 		public DbSet<Roles> Roles { get; set; }
+		public DbSet<LoggerData> LoggerDatas { get; set; }
+		public DbSet<ActionData> ActionDatas { get; set; }
 
 
 
@@ -33,9 +35,24 @@ namespace DataAccess
 			modelBuilder.Entity<FaculltyStudents>().Map<FaculltyStudents>(m => m.Requires("BillingDetailType").HasValue("Facullty"));
 			modelBuilder.Entity<Admin>().Map<Admin>(m => m.Requires("BillingDetailType").HasValue("Admin"));
 			modelBuilder.Entity<Professor>().Map<Professor>(m => m.Requires("BillingDetailType").HasValue("Professor"));
-		
 
 
+			modelBuilder.Entity<LoggerData>().ToTable("t_login");
+			modelBuilder.Entity<LoggerData>().Property(p => p.Id).HasColumnName("Id").IsRequired();
+			modelBuilder.Entity<LoggerData>().Property(p => p.Email).HasColumnName("Email").IsRequired();
+			modelBuilder.Entity<LoggerData>().Property(p => p.Password).HasColumnName("Password").IsRequired();
+			modelBuilder.Entity<LoggerData>().Property(p => p.LastLogin).HasColumnName("Last_login").IsRequired();
+			
+
+
+			modelBuilder.Entity<ActionData>().ToTable("t_data_action");
+			modelBuilder.Entity<ActionData>().HasKey<int>(s => s.Id_Action);
+			modelBuilder.Entity<ActionData>().Property(p => p.Id).HasColumnName("Id").IsRequired();
+			modelBuilder.Entity<ActionData>().Property(p => p.CurrentUser).HasColumnName("CurrentUser").IsRequired();
+			modelBuilder.Entity<ActionData>().Property(p => p.Action).HasColumnName("Action").IsRequired();
+			modelBuilder.Entity<ActionData>().Property(p => p.ActionTime).HasColumnName("ActionTime").IsRequired();
+			modelBuilder.Entity<ActionData>().Property(p => p.Role).HasColumnName("Role").IsRequired();
+			
 
 
 			modelBuilder.Entity<Roles>().ToTable("t_roles");
@@ -69,7 +86,9 @@ namespace DataAccess
 			modelBuilder.Entity<UserRoles>().Property(p => p.RoleId).HasColumnName("RoleId").IsRequired();
 			modelBuilder.Entity<UserRoles>().Property(p => p.Id).HasColumnName("Id").IsRequired();
 			modelBuilder.Entity<UserRoles>().ToTable("t_user_roles");
-		
+			
+
+
 
 		}
 

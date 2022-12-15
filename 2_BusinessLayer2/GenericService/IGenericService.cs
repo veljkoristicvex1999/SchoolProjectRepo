@@ -13,6 +13,8 @@ namespace BusinessLayer
         T findStudent(object id);
         void Remove(object id);
         void Update(T student);
+
+        IEnumerable<T> GetAll();
       //    List<T> Search(object search);
         //  void Export(object id);
     }

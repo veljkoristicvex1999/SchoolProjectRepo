@@ -59,9 +59,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionData.cs" />
     <Compile Include="Admin.cs" />
     <Compile Include="FaculltyStudents.cs" />
     <Compile Include="HighSchoolStudents.cs" />
+    <Compile Include="LoggerData.cs" />
     <Compile Include="Professor.cs" />
     <Compile Include="QueryModels\FacultyQueryModel.cs" />
     <Compile Include="QueryModels\HighSchoolQueryModel.cs" />

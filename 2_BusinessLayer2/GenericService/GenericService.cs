@@ -32,6 +32,11 @@ namespace BusinessLayer
             return repository.FindStudent(id);
         }
 
+        public IEnumerable<T> GetAll()
+        {
+           return  repository.GetAll();
+        }
+
         public virtual void Remove(object id)
         {
             repository.Delete(id);

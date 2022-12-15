@@ -19,12 +19,6 @@ namespace LayeredSolution.Controllers
             this._genericAppService = genericAppService;
         }
 
-        //public virtual ActionResult Index()
-        //{
-          
-        //    var model = _genericAppService.GetAllStudents();
-        //    return View(model);
-        //}
 
         [HttpGet]
         public ActionResult Create()
@@ -44,7 +38,7 @@ namespace LayeredSolution.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Edit(Model student)
+        public virtual ActionResult Edit(Model student)
         {
             if (ModelState.IsValid)
             {
@@ -95,6 +89,6 @@ namespace LayeredSolution.Controllers
         //    var model = IGenericService.findStudent(id);
         //    return View(model);
         //}
-
+        
     }
 }

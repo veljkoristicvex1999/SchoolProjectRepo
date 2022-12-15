@@ -12,9 +12,7 @@ namespace DataAccess
 {
     public class ProfessorQueryRepository : GenericRepository<ProfessorQueryModel>, IProfessorQueryRepository
     {
-       
-      
-       
+            
         public ProfessorQueryRepository(TuxContext db) : base(db)
         {
            

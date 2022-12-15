@@ -40,6 +40,12 @@ namespace LayeredSolution
 			container.RegisterType<IHighScoolAppService, HighScoolAppService>();
 			container.RegisterType<IGenericAppService<HighSchoolStudents, HighSchoolViewModel>, GenericAppService<HighSchoolStudents, HighSchoolViewModel>>();
 			container.RegisterType<IFacultyStudentService, FacultyStudentService>();
+
+			container.RegisterType<IGenericService<LoggerData>, GenericService<LoggerData>>();
+			container.RegisterType<IGenericRepository<LoggerData>, GenericRepository<LoggerData>>();
+			container.RegisterType<IGenericService<ActionData>, GenericService<ActionData>>();
+			container.RegisterType<IGenericRepository<ActionData>, GenericRepository<ActionData>>();
+
 			// treba mozda isiti genericki da nasledi ovo 
 			container.RegisterType<IProfessorAppService, ProfessorAppService>();
 			container.RegisterType<IGenericAppService<Professor, ProfessorViewModel>, GenericAppService<Professor, ProfessorViewModel>>();

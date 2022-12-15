@@ -12,12 +12,14 @@ namespace LayeredSolution.Controllers
 {
     public class ProfessorController : GenericController<Professor, ProfessorViewModel>
     {
+        private IGenericService<ActionData> _actionDataService;
         private IRolesService _rolesService;
        private IProfessorAppService _professorAppService;
         private IMapper mapper;
 
-       public ProfessorController(IProfessorAppService _professorAppService, IRolesService rolesService, IMapper mapper) : base(_professorAppService)
+       public ProfessorController(IProfessorAppService _professorAppService, IRolesService rolesService, IMapper mapper, IGenericService<ActionData> _actionDataService) : base(_professorAppService)
         {
+            this._actionDataService = _actionDataService;
             this.mapper = mapper;
             this._rolesService = rolesService;
             this._professorAppService = _professorAppService;
@@ -42,6 +44,9 @@ namespace LayeredSolution.Controllers
             UserRoles.Add(userRole);
             student.Roles = UserRoles;
             _professorAppService.Create(student);
+            ActionData data = SetActionData();
+            data.Id = student.Id;
+            _actionDataService.Create(data);
             return RedirectToAction("Index");
         }
 
@@ -51,11 +56,11 @@ namespace LayeredSolution.Controllers
             var model = _professorAppService.Search(Search.Trim());
             return View(model);
         }
+
+
         [Authorize(Roles = "Admin")]
         public override ActionResult Edit(int id)
         {
-
-
             var data = _professorAppService.findStudent(id);
             data.isReadOnly = false;
             if (data != null)
@@ -85,5 +90,30 @@ namespace LayeredSolution.Controllers
             return View(data);
         }
 
+        public ActionData SetActionData()
+        {
+            ActionData action = new ActionData();
+            action.Action = this.ControllerContext.RouteData.Values["action"].ToString();
+            action.Role = this.ControllerContext.RouteData.Values["controller"].ToString();
+            action.ActionTime = DateTime.Now;
+            action.CurrentUser = User.Identity.Name;
+            return action;
+        }
+
+        public override ActionResult Delete(int id, FormCollection formCollection)
+        {
+            ActionData data = SetActionData();
+            data.Id = id;
+            _actionDataService.Create(data);
+            return base.Delete(id, formCollection);
+        }
+
+        public override ActionResult Edit(Professor student)
+        {
+            ActionData data = SetActionData();
+            data.Id = student.Id;
+            _actionDataService.Create(data);
+            return base.Edit(student);
+        }
     }
 }

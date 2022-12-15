@@ -58,6 +58,11 @@ namespace DataAccess
         {
             throw new NotImplementedException();
         }
+
+        public IEnumerable<FacultyQueryModel> GetAll()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

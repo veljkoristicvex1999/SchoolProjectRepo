@@ -15,6 +15,8 @@ namespace DataAccess
         T FindStudent(object id);
         void Delete(object id);
         void Update(T student);
+        IEnumerable<T> GetAll();
+        // we write this method because we need it in login contoler
         
 
        

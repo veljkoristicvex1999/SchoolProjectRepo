@@ -10,5 +10,6 @@ namespace BusinessLayer
     public interface IUserService : IGenericService<User>
     {
         User FindStudentByCredentials(String email, String password);
+        
     }
 }

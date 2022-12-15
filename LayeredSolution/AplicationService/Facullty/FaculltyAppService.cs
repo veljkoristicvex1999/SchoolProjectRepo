@@ -18,7 +18,7 @@ namespace LayeredSolution
         private IMapper mapper;
 
         public FaculltyAppService(IFacultyStudentService facultyStudentService, IMapper mapper) : base(facultyStudentService, mapper)
-        {           
+        {                  
             this.mapper = mapper;
             this._facultyStudentService = facultyStudentService;
         }
