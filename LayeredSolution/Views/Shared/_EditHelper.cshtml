@@ -16,7 +16,7 @@
             @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
         </div>
     </div>
-
+    @Html.DisplayFor(model => model.Er_Name)
     <div class="form-group">
         @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
@@ -24,7 +24,7 @@
             @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
         </div>
     </div>
-
+    @Html.DisplayFor(model => model.Er_LastName)
     <div class="form-group">
         @Html.LabelFor(model => model.BornDate, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
@@ -40,7 +40,7 @@
             @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
         </div>
     </div>
-
+    @Html.DisplayFor(model => model.Er_Email)
     <div class="form-group">
         @Html.LabelFor(model => model.PhoneNumber, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
@@ -48,16 +48,15 @@
             @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
         </div>
     </div>
-
+    @Html.DisplayFor(model => model.Er_PhoneNumber)
     <div class="form-group">
         @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.Address, Model.isReadOnly == true ? (object)new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } } : (object)new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
         </div>
-
     </div>
-
+    @Html.DisplayFor(model => model.Er_Address)
     @* <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-default" />

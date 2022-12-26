@@ -27,18 +27,18 @@ namespace LayeredSolution.Controllers
         }
 
         [HttpPost]
-        public virtual ActionResult Create(Model student)
+        public virtual ActionResult Create(ViewModel student)
         {
             if (ModelState.IsValid)
             {
                
-                _genericAppService.Create(student);
+           //     _genericAppService.Create(student);
                 return RedirectToAction("Index");
             }
             return View();
         }
         [HttpPost]
-        public virtual ActionResult Edit(Model student)
+        public virtual ActionResult Edit(ViewModel student)
         {
             if (ModelState.IsValid)
             {

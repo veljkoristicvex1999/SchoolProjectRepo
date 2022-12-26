@@ -21,6 +21,7 @@
             @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
         </div>
     </div>
+    @Html.DisplayFor(model => model.Er_Name)
 
     <div class="form-group">
         @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -29,6 +30,7 @@
             @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
         </div>
     </div>
+    @Html.DisplayFor(model => model.Er_LastName)
 
     <div class="form-group">
         @Html.LabelFor(model => model.BornDate, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -45,6 +47,7 @@
             @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
         </div>
     </div>
+    @Html.DisplayFor(model => model.Er_Email)
 
     <div class="form-group">
         @Html.LabelFor(model => model.PhoneNumber, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -53,6 +56,7 @@
             @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
         </div>
     </div>
+    @Html.DisplayFor(model => model.Er_PhoneNumber)
 
     <div class="form-group">
         @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -61,6 +65,7 @@
             @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
         </div>
     </div>
+    @Html.DisplayFor(model => model.Er_Address)
 
     <div class="form-group">
         @Html.LabelFor(model => model.SchoolName, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -69,6 +74,7 @@
             @Html.ValidationMessageFor(model => model.SchoolName, "", new { @class = "text-danger" })
         </div>
     </div>
+    @Html.DisplayFor(model => model.Er_SchoolName)
 
     <div class="form-group">
         @Html.LabelFor(model => model.DateOfEnrollment, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -85,6 +91,7 @@
             @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
         </div>
     </div>
+    @Html.DisplayFor(model => model.Er_Password)
 
 
 

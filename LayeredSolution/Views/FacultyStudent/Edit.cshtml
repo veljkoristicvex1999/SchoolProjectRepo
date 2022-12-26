@@ -13,6 +13,7 @@
     </div>
     <br />
     <br />
+    @Html.DisplayFor(model => model.Er_FacultyName)
     <br />
 
     <div class="form-group">
@@ -23,8 +24,10 @@
         </div>
     </div>
     <br />
+    @Html.DisplayFor(model => model.Er_Generation)
     <br />
     <br />
+
     <div class="form-group">
         @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
 
@@ -33,7 +36,7 @@
             @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
         </div>
     </div>
-
+    @Html.DisplayFor(model => model.Er_Password)
     <br />
     <br />
     <br />

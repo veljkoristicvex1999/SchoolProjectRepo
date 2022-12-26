@@ -19,9 +19,10 @@ namespace LayeredSolution
             this.genericService = genericService;
         }
 
-        public void Create(Model student)
+        public void Create(VievModel student)
         {
-            genericService.Create(student);
+            var data = mapper.Map<VievModel, Model>(student);
+            genericService.Create(data);
         }
 
         public VievModel findStudent(object id)
@@ -43,9 +44,15 @@ namespace LayeredSolution
             genericService.Remove(id);
         }
 
-        public void Update(Model student)
+        public void Update(VievModel student)
         {
-            genericService.Update(student);
+            var data = mapper.Map<VievModel, Model>(student);
+            genericService.Update(data);
+        }
+
+        public virtual VievModel Validate(VievModel model)
+        {
+            throw new NotImplementedException();
         }
     }
 }

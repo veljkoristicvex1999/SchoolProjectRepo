@@ -10,9 +10,10 @@ namespace LayeredSolution
     public interface IGenericAppService<Model,VievModel> where Model : class where VievModel : class
     {
      //   IEnumerable<VievModel> GetAllStudents();
-        void Create(Model student);
+        void Create(VievModel student);
         VievModel findStudent(object id);
         void Remove(object id);
-        void Update(Model student);
+        void Update(VievModel student);
+        VievModel Validate(VievModel model);
     }
 }

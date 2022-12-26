@@ -186,6 +186,7 @@
     <Compile Include="QueryViewModels\ProfessorQueryViewModels.cs" />
     <Compile Include="QueryViewModels\UserQueryViewModels.cs" />
     <Compile Include="ViewModels\AdminViewModel.cs" />
+    <Compile Include="ViewModels\ErrorsViewModel.cs" />
     <Compile Include="ViewModels\FaculltyViewModel.cs" />
     <Compile Include="ViewModels\HighSchoolViewModel.cs" />
     <Compile Include="ViewModels\ProfessorViewModel.cs" />
@@ -258,6 +259,7 @@
     <Content Include="Views\HighSchoolStudents\UserProfile.cshtml" />
     <Content Include="Views\Professor\UserProfile.cshtml" />
     <Content Include="Views\Shared\_DeletePopUp.cshtml" />
+    <Content Include="Views\FacultyStudent\Errors.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

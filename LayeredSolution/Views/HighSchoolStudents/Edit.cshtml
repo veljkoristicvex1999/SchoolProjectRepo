@@ -16,6 +16,7 @@
         </div>
     </div>
     <br />
+    @Html.DisplayFor(model => model.Er_SchoolName)
     <br />
     <br />
 
@@ -27,6 +28,7 @@
         </div>
     </div>
     <br />
+
     <br />
     <br />
     <div class="form-group">
@@ -35,8 +37,7 @@
             @Html.EditorFor(model => model.Password, Model.isReadOnly == true ? (object)new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } } : (object)new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
         </div>
-    </div>
-
+    </div> @Html.DisplayFor(model => model.Er_Password)
     <br />
     <br />
     <br />

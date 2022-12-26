@@ -47,23 +47,23 @@ namespace LayeredSolution.Controllers
                     if (userRoles.Where(a => a.RoleId == 8).FirstOrDefault() != null)
                     {
                    
-                    CheckIfUserExistIn(user);
+                  //  CheckIfUserExistIn(user);
                     return RedirectToAction("UserProfile", "Admin");
                    
                     }
                     else if (userRoles.Where(a => a.RoleId == 9).FirstOrDefault() != null)
                     {
-                    CheckIfUserExistIn(user);
+                   // CheckIfUserExistIn(user);
                     return RedirectToAction("UserProfile", "Professor");
                     }
                     else if (userRoles.Where(a => a.RoleId == 10).FirstOrDefault() != null)
                     {
-                    CheckIfUserExistIn(user);
+                  //  CheckIfUserExistIn(user);
                     return RedirectToAction("UserProfile", "FacultyStudent");
                     }
                     else
                     {
-                    CheckIfUserExistIn(user);
+                  //  CheckIfUserExistIn(user);
                     return RedirectToAction("UserProfile", "HighSchoolStudents");
                     }
                 }

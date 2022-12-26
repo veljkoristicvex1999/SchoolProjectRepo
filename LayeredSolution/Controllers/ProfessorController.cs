@@ -31,9 +31,13 @@ namespace LayeredSolution.Controllers
             var model = _professorAppService.GetAllStudents();
             return View(model);
         }
+
          [Authorize(Roles = "Admin")]
-        public override ActionResult Create(Professor student)
+        public override ActionResult Create(ProfessorViewModel student)
         {
+            var studentVievModel = _professorAppService.Validate(student);
+            var ok = CheckError(studentVievModel);
+            if (ok) { 
             List<UserRoles> UserRoles = new List<UserRoles>();
             UserRoles userRole = new UserRoles()
             {
@@ -48,6 +52,11 @@ namespace LayeredSolution.Controllers
             data.Id = student.Id;
             _actionDataService.Create(data);
             return RedirectToAction("Index");
+            }
+            else
+            {
+                return View("Create", studentVievModel);
+            }
         }
 
         [Authorize(Roles = "Admin")]
@@ -108,12 +117,32 @@ namespace LayeredSolution.Controllers
             return base.Delete(id, formCollection);
         }
 
-        public override ActionResult Edit(Professor student)
+        public override ActionResult Edit(ProfessorViewModel student)
         {
-            ActionData data = SetActionData();
-            data.Id = student.Id;
-            _actionDataService.Create(data);
-            return base.Edit(student);
+            var studentVievModel = _professorAppService.Validate(student);
+            var ok = CheckError(studentVievModel);
+            if (ok)
+            {
+                ActionData data = SetActionData();
+                data.Id = student.Id;
+                _actionDataService.Create(data);
+                return base.Edit(student);
+            }
+            else
+            {
+                return View("Edit", studentVievModel);
+            }
+        }
+        public bool CheckError(ProfessorViewModel professor)
+        {
+            if ( professor.Er_Name == null && professor.Er_LastName == null && professor.Er_Email == null && professor.Er_Password == null && professor.Er_PhoneNumber == null &&  professor.Er_Subject == null && professor.Er_HoursPerWeek == null && professor.Er_Address == null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

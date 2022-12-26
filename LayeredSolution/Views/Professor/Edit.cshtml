@@ -5,7 +5,7 @@
 
     @Html.Partial("_EditHelper", Model)
     <br />
-    
+
     <div class="form-group">
         @Html.LabelFor(model => model.Subject, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
@@ -14,6 +14,7 @@
         </div>
     </div>
     <br />
+    @Html.DisplayFor(model => model.Er_Subject)
     <br />
 
     <div class="form-group">
@@ -24,7 +25,7 @@
         </div>
     </div>
     <br />
-
+    @Html.DisplayFor(model => model.Er_HoursPerWeek)
     <br />
     <div class="form-group">
         @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -35,6 +36,7 @@
     </div>
 
     <br />
+    @Html.DisplayFor(model => model.Er_Password)
     <br />
     <br />
     <div class="form-group">

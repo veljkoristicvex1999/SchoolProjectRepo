@@ -63,24 +63,34 @@ namespace LayeredSolution.Controllers
 
 
         [Authorize(Roles = "Admin,Professor")]
-        public override ActionResult Create(HighSchoolStudents student)
+        public override ActionResult Create(HighSchoolViewModel student)
         {
-            List<UserRoles> UserRoles = new List<UserRoles>();
-            UserRoles userRole = new UserRoles()
+
+            var studentVievModel = _highScoolAppService.Validate(student);
+            var ok = CheckError(studentVievModel);
+            if (ok)
             {
-                Id = student.Id,
-                RoleId = _rolesService.getAllRoles().FirstOrDefault(r => r.RoleName == "HighSchool").RoleId
+                List<UserRoles> UserRoles = new List<UserRoles>();
+                UserRoles userRole = new UserRoles()
+                {
+                    Id = student.Id,
+                    RoleId = _rolesService.getAllRoles().FirstOrDefault(r => r.RoleName == "HighSchool").RoleId
 
-            };
+                };
 
-            UserRoles.Add(userRole);
-            student.Roles = UserRoles;
-            _highScoolAppService.Create(student);
-            //add action data
-            ActionData data = SetActionData();
-            data.Id = student.Id;
-            _actionDataService.Create(data);
-            return RedirectToAction("Index");
+                UserRoles.Add(userRole);
+                student.Roles = UserRoles;
+                _highScoolAppService.Create(student);
+                //add action data
+                ActionData data = SetActionData();
+                data.Id = student.Id;
+                _actionDataService.Create(data);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View("Create", studentVievModel);
+            }
         }
 
         public override ActionResult Delete(int id)
@@ -103,12 +113,21 @@ namespace LayeredSolution.Controllers
             action.CurrentUser = User.Identity.Name;
             return action;
         }
-        public override ActionResult Edit(HighSchoolStudents student)
+        public override ActionResult Edit(HighSchoolViewModel student)
         {
-            ActionData data = SetActionData();
-            data.Id = student.Id;
-            _actionDataService.Create(data);
-            return base.Edit(student);
+            var studentVievModel = _highScoolAppService.Validate(student);
+            var ok = CheckError(studentVievModel);
+            if (ok)
+            {
+                ActionData data = SetActionData();
+                data.Id = student.Id;
+                _actionDataService.Create(data);
+                return base.Edit(student);
+            }
+            else
+            {
+                return View("Edit", studentVievModel);
+            }
         }
         public override ActionResult Delete(int id, FormCollection formCollection)
         {
@@ -116,6 +135,18 @@ namespace LayeredSolution.Controllers
             data.Id = id;
               _actionDataService.Create(data);
             return base.Delete(id, formCollection);
+        }
+
+        public bool CheckError(HighSchoolViewModel highSchool)
+        {
+            if (highSchool.Er_Name == null && highSchool.Er_LastName == null && highSchool.Er_Email == null && highSchool.Er_Password == null && highSchool.Er_PhoneNumber == null && highSchool.Er_Address == null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

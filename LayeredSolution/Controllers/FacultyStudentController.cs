@@ -80,24 +80,35 @@ namespace LayeredSolution.Controllers
 
 
         [Authorize(Roles = "Professor,Admin")]
-        public override ActionResult Create(FaculltyStudents student)
+        public override ActionResult Create(FaculltyViewModel student)
         {
-            List<UserRoles> UserRoles = new List<UserRoles>();
-            UserRoles userRole = new UserRoles()
+            //viev mode umetodi 
+            var studentVievModel = _faculltyAppService.Validate(student);
+            var ok  =  CheckError(studentVievModel);
+
+            if (ok)
             {
-                Id = student.Id,
-                RoleId = _rolesService.getAllRoles().FirstOrDefault(r => r.RoleName == "Facullty").RoleId
+                List<UserRoles> UserRoles = new List<UserRoles>();
+                UserRoles userRole = new UserRoles()
+                {
+                    Id = student.Id,
+                    RoleId = _rolesService.getAllRoles().FirstOrDefault(r => r.RoleName == "Facullty").RoleId
 
-            };
+                };
 
-            UserRoles.Add(userRole);
-            student.Roles = UserRoles;
-            _faculltyAppService.Create(student);
-            // save data about action 
-            ActionData data = SetActionData();
-            data.Id = student.Id;
-            _actionDataService.Create(data);
-            return RedirectToAction("Index");
+                UserRoles.Add(userRole);
+                student.Roles = UserRoles;
+                _faculltyAppService.Create(student);
+                // save data about action 
+                ActionData data = SetActionData();
+                data.Id = student.Id;
+                _actionDataService.Create(data);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View("Create", studentVievModel);
+            }
         }
 
         [HttpGet]
@@ -121,8 +132,28 @@ namespace LayeredSolution.Controllers
             return base.Delete(id, formCollection);
         }
 
+      
+
+        public override ActionResult Edit(FaculltyViewModel student)
+        {
+            var studentVievModel = _faculltyAppService.Validate(student);
+            var ok = CheckError(studentVievModel);
+            if (ok)
+            {
+                ActionData data = SetActionData();
+                data.Id = student.Id;
+                _actionDataService.Create(data);
+                return base.Edit(student);
+            }
+            else
+            {
+                return View("Edit", studentVievModel);
+            }
+        }
+
         public ActionData SetActionData()
         {
+
             ActionData action = new ActionData();
             action.Action = this.ControllerContext.RouteData.Values["action"].ToString();
             action.Role = this.ControllerContext.RouteData.Values["controller"].ToString();
@@ -131,12 +162,16 @@ namespace LayeredSolution.Controllers
             return action;
         }
 
-        public override ActionResult Edit(FaculltyStudents student)
+        public bool CheckError(FaculltyViewModel fac)
         {
-            ActionData data = SetActionData();
-            data.Id = student.Id;
-            _actionDataService.Create(data);
-            return base.Edit(student);
+            if(fac.Er_Name==null && fac.Er_LastName==null && fac.Er_Email==null && fac.Er_Password == null && fac.Er_PhoneNumber == null && fac.Er_FacultyName == null && fac.Er_Generation == null && fac.Er_Subject == null && fac.Er_HoursPerWeek == null && fac.Er_Address == null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
