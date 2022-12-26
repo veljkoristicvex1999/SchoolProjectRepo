@@ -30,8 +30,7 @@ namespace LayeredSolution.Controllers
         public virtual ActionResult Create(ViewModel student)
         {
             if (ModelState.IsValid)
-            {
-               
+            { 
            //     _genericAppService.Create(student);
                 return RedirectToAction("Index");
             }
@@ -81,14 +80,6 @@ namespace LayeredSolution.Controllers
                 return View("Edit", model);
             }
             return RedirectToAction("Index");
-        }
-
-        //public ActionResult UserProfile(UserViewModel userViewModel)
-        //{
-        //    int id = userViewModel.Id;
-        //    var model = IGenericService.findStudent(id);
-        //    return View(model);
-        //}
-        
+        }       
     }
 }

@@ -82,7 +82,7 @@ namespace LayeredSolution.Controllers
         [Authorize(Roles = "Professor,Admin")]
         public override ActionResult Create(FaculltyViewModel student)
         {
-            //viev mode umetodi 
+
             var studentVievModel = _faculltyAppService.Validate(student);
             var ok  =  CheckError(studentVievModel);
 
